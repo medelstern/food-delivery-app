@@ -11,15 +11,38 @@ import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     var window: UIWindow?
-
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        // Override point for customization after application launch.
+        // Sets background to a blank/empty image
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
+        // Sets shadow (line below the bar) to a blank image
+        UINavigationBar.appearance().shadowImage = UIImage()
+        // Sets the translucent background color
+        UINavigationBar.appearance().backgroundColor = .clear
+        // Set translucent. (Default value is already true, so this can be removed if desired.)
+        UINavigationBar.appearance().isTranslucent = true
+        let fontAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15.0)]
+        UITabBarItem.appearance().setTitleTextAttributes(fontAttributes, for: .normal)
         return true
     }
-
+    
+    func mainVC(){
+            let mainStoryboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                   let homePage = mainStoryboard.instantiateViewController(withIdentifier: "MainNavigation")
+                   self.window?.rootViewController = homePage
+        }
+    
+    func menuVC(){
+        let mainStoryboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+               let homePage = mainStoryboard.instantiateViewController(withIdentifier: "AppTabViewController")
+               self.window?.rootViewController = homePage
+    }
+    
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
@@ -87,6 +110,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
         }
+    }
+    
+    func goToTabBarScreen(index : Int){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "AppTabViewController")  as! AppTabViewController
+        vc.selectedIndex = index
+        window?.rootViewController = vc
+    }
+    
+    func goToLoginView(){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "MainNavigation")  as! UINavigationController
+        window?.rootViewController = vc
     }
 
 }
