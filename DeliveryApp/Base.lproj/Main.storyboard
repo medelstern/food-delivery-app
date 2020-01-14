@@ -3268,6 +3268,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Sj0-lA-2hD">
+                                <rect key="frame" x="0.0" y="141" width="414" height="164.66666666666663"/>
+                            </mapView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yI8-ep-y6Q">
                                 <rect key="frame" x="0.0" y="305.66666666666674" width="414" height="507.33333333333326"/>
                                 <subviews>
@@ -3523,31 +3526,59 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Sj0-lA-2hD">
-                                <rect key="frame" x="0.0" y="87.999999999999986" width="414" height="217.66666666666663"/>
-                            </mapView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Azn-os-mRQ" userLabel="TopView">
+                                <rect key="frame" x="0.0" y="88" width="414" height="53"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gtt-VU-yft">
+                                        <rect key="frame" x="19" y="6.6666666666666714" width="40" height="40"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="Qge-J7-83C"/>
+                                            <constraint firstAttribute="height" constant="40" id="qOI-nH-yv5"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="72"/>
+                                        <color key="tintColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" image="ic_goback">
+                                            <color key="titleColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onBackPressed:" destination="rlu-qM-FOT" eventType="touchUpInside" id="elv-9q-q1B"/>
+                                        </connections>
+                                    </button>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_logo" translatesAutoresizingMaskIntoConstraints="NO" id="xVC-D1-Ian">
+                                        <rect key="frame" x="107" y="14" width="200" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="6nR-Eo-UFu"/>
+                                            <constraint firstAttribute="height" constant="25" id="WGF-Wh-Bai"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="53" id="3zc-BL-Xb5"/>
+                                    <constraint firstItem="xVC-D1-Ian" firstAttribute="centerY" secondItem="Azn-os-mRQ" secondAttribute="centerY" id="4lG-jG-xZg"/>
+                                    <constraint firstItem="Gtt-VU-yft" firstAttribute="centerY" secondItem="Azn-os-mRQ" secondAttribute="centerY" id="T3i-xF-7LT"/>
+                                    <constraint firstItem="Gtt-VU-yft" firstAttribute="leading" secondItem="Azn-os-mRQ" secondAttribute="leading" constant="19" id="emd-yp-pwn"/>
+                                    <constraint firstItem="xVC-D1-Ian" firstAttribute="centerX" secondItem="Azn-os-mRQ" secondAttribute="centerX" id="jYN-Fg-mho"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="Azn-os-mRQ" firstAttribute="leading" secondItem="rZu-5j-tGO" secondAttribute="leading" id="4jI-nG-OBC"/>
+                            <constraint firstItem="Azn-os-mRQ" firstAttribute="trailing" secondItem="rZu-5j-tGO" secondAttribute="trailing" id="TAf-44-AnX"/>
                             <constraint firstItem="yI8-ep-y6Q" firstAttribute="trailing" secondItem="rZu-5j-tGO" secondAttribute="trailing" id="TGz-qS-mdB"/>
                             <constraint firstItem="Sj0-lA-2hD" firstAttribute="leading" secondItem="rZu-5j-tGO" secondAttribute="leading" id="Tux-PB-0fg"/>
                             <constraint firstItem="yI8-ep-y6Q" firstAttribute="height" secondItem="rZu-5j-tGO" secondAttribute="height" multiplier="0.7" id="UeU-MC-Yao"/>
                             <constraint firstItem="yI8-ep-y6Q" firstAttribute="leading" secondItem="rZu-5j-tGO" secondAttribute="leading" id="ZOR-N8-RKK"/>
                             <constraint firstItem="yI8-ep-y6Q" firstAttribute="top" secondItem="Sj0-lA-2hD" secondAttribute="bottom" id="cUg-zU-PbM"/>
-                            <constraint firstItem="Sj0-lA-2hD" firstAttribute="top" secondItem="rZu-5j-tGO" secondAttribute="top" id="cno-Uj-0IJ"/>
                             <constraint firstItem="rZu-5j-tGO" firstAttribute="bottom" secondItem="yI8-ep-y6Q" secondAttribute="bottom" id="kiT-RP-CR3"/>
+                            <constraint firstItem="Sj0-lA-2hD" firstAttribute="top" secondItem="Azn-os-mRQ" secondAttribute="bottom" id="qaP-ZF-Z9O"/>
+                            <constraint firstItem="Azn-os-mRQ" firstAttribute="top" secondItem="rZu-5j-tGO" secondAttribute="top" id="tDe-M7-w2h"/>
                             <constraint firstItem="Sj0-lA-2hD" firstAttribute="trailing" secondItem="rZu-5j-tGO" secondAttribute="trailing" id="tqj-Cq-vOr"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rZu-5j-tGO"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="xL4-4K-p3a"/>
-                    <navigationItem key="navigationItem" id="kbR-ma-AXv">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="ic_goback" id="wwy-zD-4TY">
-                            <connections>
-                                <action selector="onBackPressed:" destination="rlu-qM-FOT" id="5WT-ub-ORi"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
                     <connections>
                         <outlet property="bottomView" destination="BfZ-Zd-bAk" id="z1p-ZW-Exd"/>
                         <outlet property="hoursTableView" destination="xgk-0X-snA" id="Qkl-u3-zeg"/>
@@ -7971,6 +8002,6 @@ mushroom, golden com, Jalapeno Extra chese</string>
         <image name="tickgreen" width="60.666667938232422" height="60.333332061767578"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="VIr-Ew-OMp"/>
+        <segue reference="Tns-5b-MtV"/>
     </inferredMetricsTieBreakers>
 </document>

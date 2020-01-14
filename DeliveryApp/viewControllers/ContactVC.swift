@@ -48,8 +48,14 @@ class ContactVC: UIViewController {
         self.navigationController?.navigationBar.isHidden = false
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
     override func viewWillDisappear(_ animated: Bool) {
         tabBarController?.tabBar.selectedImageTintColor = UIColor(named: "#157efb")
+        navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     @IBAction func onBackPressed(_ sender: Any) {
         tabBarController?.tabBar.selectedImageTintColor = .blue
