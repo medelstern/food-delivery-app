@@ -37,7 +37,7 @@ class OrderPlacingVC: UIViewController {
     
     @IBOutlet weak var cartPriceView: UIView!
     @IBOutlet weak var cartPriceBottomConstraint: NSLayoutConstraint!
-    
+
     var timerForShowScrollIndicator: Timer?
     var count = 1
     var price = 5.99
@@ -74,6 +74,13 @@ class OrderPlacingVC: UIViewController {
         setUpCartItems()
         startTimerForShowScrollIndicator()
     }
+    
+    @IBAction private func handleTap(_ sender: UITapGestureRecognizer) {
+        if sender.state == .recognized {
+            self.presentingViewController?.dismiss(animated: true)
+        }
+    }
+    
     @objc func showScrollIndicatorsInContacts() {
         UIView.animate(withDuration: 0.001) {
             self.topicCollectionView.flashScrollIndicators()

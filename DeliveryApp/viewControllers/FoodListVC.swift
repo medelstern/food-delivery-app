@@ -264,5 +264,8 @@ class FoodListVC: UIViewController, WormTabStripDelegate, ProductListVCDelegate,
         }
     }
     
-  
+    public func showAsPopup(_ vc: UIViewController, animated: Bool = true) {
+        vc.modalPresentationStyle = .overCurrentContext
+        self.present(vc, animated: animated)
+    }
 }

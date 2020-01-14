@@ -48,7 +48,8 @@ class ProductListVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "orderPlacingVC") as! OrderPlacingVC
             vc.selectedProduct = self.selectedProduct
             if #available(iOS 11.0, *) {
-                FoodListVC.__shared?.navigationController?.pushViewController(vc, animated: true)
+//                FoodListVC.__shared?.navigationController?.pushViewController(vc, animated: true)
+                FoodListVC.__shared?.showAsPopup(vc)
             } else {
                 // Fallback on earlier versions
             }
@@ -157,4 +158,27 @@ protocol ProductListVCDelegate: class {
     func setUpCartItems()
     func shouldHideKeyboard()
 
+}
+
+
+extension UIView {
+
+    public func pauseAnimation(delay: Double) {
+        let time = delay + CFAbsoluteTimeGetCurrent()
+        let timer = CFRunLoopTimerCreateWithHandler(kCFAllocatorDefault, time, 0, 0, 0, { timer in
+            let layer = self.layer
+            let pausedTime = layer.convertTime(CACurrentMediaTime(), from: nil)
+            layer.speed = 0.0
+            layer.timeOffset = pausedTime
+        })
+        CFRunLoopAddTimer(CFRunLoopGetCurrent(), timer, CFRunLoopMode.commonModes)
+    }
+
+    public func resumeAnimation() {
+        let pausedTime  = layer.timeOffset
+
+        layer.speed = 1.0
+        layer.timeOffset = 0.0
+        layer.beginTime = layer.convertTime(CACurrentMediaTime(), from: nil) - pausedTime
+    }
 }
