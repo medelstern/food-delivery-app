@@ -22,6 +22,7 @@ class OrderedProductListCell: UITableViewCell {
         txtFeature.text = data.getFeature()
         txtDescription.text = data.getDescription()
         txtPrice.text = "$\(data.getPrice())"
+        
     }
     
     override func awakeFromNib() {

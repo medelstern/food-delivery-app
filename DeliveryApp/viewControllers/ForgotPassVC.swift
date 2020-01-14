@@ -9,7 +9,9 @@
 import UIKit
 
 class ForgotPassVC: UIViewController, UITextFieldDelegate {
-
+    @IBOutlet weak var forgotBorder: UILabel!
+    
+    @IBOutlet weak var emailLb: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,6 +22,15 @@ class ForgotPassVC: UIViewController, UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
+    }
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        forgotBorder.backgroundColor = UIColor(red: 0, green: 174, blue: 239)
+        emailLb.textColor = UIColor(red: 0, green: 174, blue: 239)
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        forgotBorder.backgroundColor = .gray
+        emailLb.textColor = .gray
     }
 
     @IBAction func onLoginPressed(_ sender: Any) {

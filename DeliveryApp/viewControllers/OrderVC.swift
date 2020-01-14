@@ -24,6 +24,15 @@ class OrderVC: UIViewController {
     @IBAction func actnMyOrders(_ sender: Any) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.goToTabBarScreen(index: 1)
+        if let tabItems = tabBarController?.tabBar.items {
+            let orderItemData = AppConstants.getCartItems()
+            var sum_count = 0
+            for item in orderItemData {
+                sum_count += item.getCount()
+            }
+            let tabItem = tabItems[3]
+            tabItem.badgeValue = String(sum_count)
+        }
     }
     
     @IBAction func actnBack(_ sender: Any) {

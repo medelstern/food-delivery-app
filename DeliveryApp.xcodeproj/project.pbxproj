@@ -8,6 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		4D8D5E9E236B885600FA244C /* AppTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8D5E9D236B885600FA244C /* AppTabViewController.swift */; };
+		4E4D3D8023A5ACB80073253F /* FormTextFieldTypeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4D3D7123A5ACB70073253F /* FormTextFieldTypeManager.swift */; };
+		4E4D3D8123A5ACB80073253F /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4D3D7323A5ACB70073253F /* Validation.swift */; };
+		4E4D3D8223A5ACB80073253F /* FormTextFieldClearButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4D3D7423A5ACB70073253F /* FormTextFieldClearButton.swift */; };
+		4E4D3D8323A5ACB80073253F /* CardNumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4D3D7623A5ACB80073253F /* CardNumberFormatter.swift */; };
+		4E4D3D8423A5ACB80073253F /* CardExpirationDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4D3D7723A5ACB80073253F /* CardExpirationDateFormatter.swift */; };
+		4E4D3D8523A5ACB80073253F /* Formattable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4D3D7823A5ACB80073253F /* Formattable.swift */; };
+		4E4D3D8623A5ACB80073253F /* RequiredInputValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4D3D7A23A5ACB80073253F /* RequiredInputValidator.swift */; };
+		4E4D3D8723A5ACB80073253F /* InputValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4D3D7B23A5ACB80073253F /* InputValidator.swift */; };
+		4E4D3D8823A5ACB80073253F /* InputValidatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4D3D7C23A5ACB80073253F /* InputValidatable.swift */; };
+		4E4D3D8923A5ACB80073253F /* CardExpirationDateInputValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4D3D7D23A5ACB80073253F /* CardExpirationDateInputValidator.swift */; };
+		4E4D3D8A23A5ACB80073253F /* DecimalInputValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4D3D7E23A5ACB80073253F /* DecimalInputValidator.swift */; };
+		4E4D3D8B23A5ACB80073253F /* FormTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4D3D7F23A5ACB80073253F /* FormTextField.swift */; };
+		4EF81AE123A60E5C007542C2 /* HoursTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF81AE023A60E5C007542C2 /* HoursTableViewCell.swift */; };
 		5765C6CA9D10EC6DEA9FE218 /* Pods_DeliveryAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2CCCFB7471A403855CE3F8 /* Pods_DeliveryAppTests.framework */; };
 		89B66B3722FC823C003FE3EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B66B3622FC823C003FE3EE /* AppDelegate.swift */; };
 		89B66B3922FC823C003FE3EE /* PlaceOrderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B66B3822FC823C003FE3EE /* PlaceOrderVC.swift */; };
@@ -20,6 +33,9 @@
 		89B66B6A22FCAFCD003FE3EE /* AddAddressVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B66B6922FCAFCD003FE3EE /* AddAddressVC.swift */; };
 		89B66B6C22FCCFE3003FE3EE /* PaymentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B66B6B22FCCFE3003FE3EE /* PaymentVC.swift */; };
 		89B66B6E22FCDC8A003FE3EE /* OrderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B66B6D22FCDC8A003FE3EE /* OrderVC.swift */; };
+		8D3554BC2394C99B000DE724 /* OrderPlacingCellTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3554BB2394C99B000DE724 /* OrderPlacingCellTwo.swift */; };
+		8D4C56F6239A69F7008BCBAF /* AddressListCellDel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4C56F5239A69F7008BCBAF /* AddressListCellDel.swift */; };
+		8DF1B2602394041700595379 /* OrderPlacingVCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF1B25F2394041700595379 /* OrderPlacingVCCell.swift */; };
 		9B6044D841C36BA76BC6B670 /* Pods_DeliveryAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DCD6233AC080A60087AAD9D /* Pods_DeliveryAppUITests.framework */; };
 		EA0F681D2304984800329514 /* FoodListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0F681C2304984800329514 /* FoodListVC.swift */; };
 		EA0F681F2304A83C00329514 /* CartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0F681E2304A83C00329514 /* CartVC.swift */; };
@@ -48,6 +64,8 @@
 		EADD624B2302C16100433E92 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADD624A2302C16100433E92 /* ProfileVC.swift */; };
 		EADD624D2302C1BD00433E92 /* ContactVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADD624C2302C1BD00433E92 /* ContactVC.swift */; };
 		EC96645E8DE63F20F76EDADD /* Pods_DeliveryApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 211238F8B85F1EA2BE201BD4 /* Pods_DeliveryApp.framework */; };
+		F40A8C6323CC191B00CF9DF6 /* FirstVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40A8C6223CC191B00CF9DF6 /* FirstVC.swift */; };
+		F4E4D17E23C48C1C0058038E /* Blogger_Sans.otf in Resources */ = {isa = PBXBuildFile; fileRef = F4E4D17D23C48C1B0058038E /* Blogger_Sans.otf */; };
 		F867AFFA23559A2A00677F08 /* ForgotPassVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F867AFF923559A2A00677F08 /* ForgotPassVC.swift */; };
 		F86EB0DB235361B200B1C821 /* AddressListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86EB0DA235361B200B1C821 /* AddressListCell.swift */; };
 		F86EB0DD23536A3700B1C821 /* AddressItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86EB0DC23536A3700B1C821 /* AddressItem.swift */; };
@@ -82,6 +100,19 @@
 		211238F8B85F1EA2BE201BD4 /* Pods_DeliveryApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DeliveryApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		24634F094B3BC59B3CD0E3FA /* Pods-DeliveryApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DeliveryApp.debug.xcconfig"; path = "Target Support Files/Pods-DeliveryApp/Pods-DeliveryApp.debug.xcconfig"; sourceTree = "<group>"; };
 		4D8D5E9D236B885600FA244C /* AppTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabViewController.swift; sourceTree = "<group>"; };
+		4E4D3D7123A5ACB70073253F /* FormTextFieldTypeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormTextFieldTypeManager.swift; sourceTree = "<group>"; };
+		4E4D3D7323A5ACB70073253F /* Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
+		4E4D3D7423A5ACB70073253F /* FormTextFieldClearButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormTextFieldClearButton.swift; sourceTree = "<group>"; };
+		4E4D3D7623A5ACB80073253F /* CardNumberFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardNumberFormatter.swift; sourceTree = "<group>"; };
+		4E4D3D7723A5ACB80073253F /* CardExpirationDateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardExpirationDateFormatter.swift; sourceTree = "<group>"; };
+		4E4D3D7823A5ACB80073253F /* Formattable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Formattable.swift; sourceTree = "<group>"; };
+		4E4D3D7A23A5ACB80073253F /* RequiredInputValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequiredInputValidator.swift; sourceTree = "<group>"; };
+		4E4D3D7B23A5ACB80073253F /* InputValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputValidator.swift; sourceTree = "<group>"; };
+		4E4D3D7C23A5ACB80073253F /* InputValidatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputValidatable.swift; sourceTree = "<group>"; };
+		4E4D3D7D23A5ACB80073253F /* CardExpirationDateInputValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardExpirationDateInputValidator.swift; sourceTree = "<group>"; };
+		4E4D3D7E23A5ACB80073253F /* DecimalInputValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecimalInputValidator.swift; sourceTree = "<group>"; };
+		4E4D3D7F23A5ACB80073253F /* FormTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormTextField.swift; sourceTree = "<group>"; };
+		4EF81AE023A60E5C007542C2 /* HoursTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoursTableViewCell.swift; sourceTree = "<group>"; };
 		7706832DE7FDA2FDD2623B72 /* Pods-DeliveryApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DeliveryApp.release.xcconfig"; path = "Target Support Files/Pods-DeliveryApp/Pods-DeliveryApp.release.xcconfig"; sourceTree = "<group>"; };
 		89B66B3322FC823C003FE3EE /* DeliveryApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeliveryApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89B66B3622FC823C003FE3EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -100,6 +131,9 @@
 		89B66B6922FCAFCD003FE3EE /* AddAddressVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAddressVC.swift; sourceTree = "<group>"; };
 		89B66B6B22FCCFE3003FE3EE /* PaymentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentVC.swift; sourceTree = "<group>"; };
 		89B66B6D22FCDC8A003FE3EE /* OrderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderVC.swift; sourceTree = "<group>"; };
+		8D3554BB2394C99B000DE724 /* OrderPlacingCellTwo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderPlacingCellTwo.swift; sourceTree = "<group>"; };
+		8D4C56F5239A69F7008BCBAF /* AddressListCellDel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressListCellDel.swift; sourceTree = "<group>"; };
+		8DF1B25F2394041700595379 /* OrderPlacingVCCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderPlacingVCCell.swift; sourceTree = "<group>"; };
 		DFC7180BDC4687D9DC98C9E8 /* Pods-DeliveryAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DeliveryAppTests.debug.xcconfig"; path = "Target Support Files/Pods-DeliveryAppTests/Pods-DeliveryAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E3AB36D5AECABFEB66E53D09 /* Pods-DeliveryAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DeliveryAppTests.release.xcconfig"; path = "Target Support Files/Pods-DeliveryAppTests/Pods-DeliveryAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		EA0F681C2304984800329514 /* FoodListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodListVC.swift; sourceTree = "<group>"; };
@@ -129,6 +163,8 @@
 		EADD624A2302C16100433E92 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		EADD624C2302C1BD00433E92 /* ContactVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactVC.swift; sourceTree = "<group>"; };
 		ED2CCCFB7471A403855CE3F8 /* Pods_DeliveryAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DeliveryAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F40A8C6223CC191B00CF9DF6 /* FirstVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstVC.swift; sourceTree = "<group>"; };
+		F4E4D17D23C48C1B0058038E /* Blogger_Sans.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Blogger_Sans.otf; path = DeliveryApp/Blogger_Sans.otf; sourceTree = "<group>"; };
 		F867AFF923559A2A00677F08 /* ForgotPassVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPassVC.swift; sourceTree = "<group>"; };
 		F86EB0DA235361B200B1C821 /* AddressListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressListCell.swift; sourceTree = "<group>"; };
 		F86EB0DC23536A3700B1C821 /* AddressItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressItem.swift; sourceTree = "<group>"; };
@@ -179,9 +215,53 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		4E4D3D7023A5AC640073253F /* FormatTextField */ = {
+			isa = PBXGroup;
+			children = (
+				4E4D3D7523A5ACB80073253F /* Formatter */,
+				4E4D3D7F23A5ACB80073253F /* FormTextField.swift */,
+				4E4D3D7423A5ACB70073253F /* FormTextFieldClearButton.swift */,
+				4E4D3D7123A5ACB70073253F /* FormTextFieldTypeManager.swift */,
+				4E4D3D7923A5ACB80073253F /* InputValidator */,
+				4E4D3D7223A5ACB70073253F /* Validation */,
+			);
+			path = FormatTextField;
+			sourceTree = "<group>";
+		};
+		4E4D3D7223A5ACB70073253F /* Validation */ = {
+			isa = PBXGroup;
+			children = (
+				4E4D3D7323A5ACB70073253F /* Validation.swift */,
+			);
+			path = Validation;
+			sourceTree = "<group>";
+		};
+		4E4D3D7523A5ACB80073253F /* Formatter */ = {
+			isa = PBXGroup;
+			children = (
+				4E4D3D7623A5ACB80073253F /* CardNumberFormatter.swift */,
+				4E4D3D7723A5ACB80073253F /* CardExpirationDateFormatter.swift */,
+				4E4D3D7823A5ACB80073253F /* Formattable.swift */,
+			);
+			path = Formatter;
+			sourceTree = "<group>";
+		};
+		4E4D3D7923A5ACB80073253F /* InputValidator */ = {
+			isa = PBXGroup;
+			children = (
+				4E4D3D7A23A5ACB80073253F /* RequiredInputValidator.swift */,
+				4E4D3D7B23A5ACB80073253F /* InputValidator.swift */,
+				4E4D3D7C23A5ACB80073253F /* InputValidatable.swift */,
+				4E4D3D7D23A5ACB80073253F /* CardExpirationDateInputValidator.swift */,
+				4E4D3D7E23A5ACB80073253F /* DecimalInputValidator.swift */,
+			);
+			path = InputValidator;
+			sourceTree = "<group>";
+		};
 		89B66B2A22FC823C003FE3EE = {
 			isa = PBXGroup;
 			children = (
+				F4E4D17D23C48C1B0058038E /* Blogger_Sans.otf */,
 				89B66B3522FC823C003FE3EE /* DeliveryApp */,
 				89B66B4D22FC824B003FE3EE /* DeliveryAppTests */,
 				89B66B5822FC824B003FE3EE /* DeliveryAppUITests */,
@@ -291,6 +371,8 @@
 				EA58E9692303BC840093036B /* MenuTableCell1.swift */,
 				EA58E96B2303BCE80093036B /* MenuTableCell0.swift */,
 				F86EB0DA235361B200B1C821 /* AddressListCell.swift */,
+				8D4C56F5239A69F7008BCBAF /* AddressListCellDel.swift */,
+				4EF81AE023A60E5C007542C2 /* HoursTableViewCell.swift */,
 			);
 			path = cells;
 			sourceTree = "<group>";
@@ -314,11 +396,14 @@
 				EA0F681C2304984800329514 /* FoodListVC.swift */,
 				EA0F681E2304A83C00329514 /* CartVC.swift */,
 				EA1B86322304BEC200250BBE /* OrderPlacingVC.swift */,
-				FAAD84DC2331C6DD006EF5C7 /* MenuTableVC.swift */,
 				F8CB48D523517B550020FC47 /* LoginVC.swift */,
 				F8CB48D923518A9D0020FC47 /* SignupVC.swift */,
 				F867AFF923559A2A00677F08 /* ForgotPassVC.swift */,
+				FAAD84DC2331C6DD006EF5C7 /* MenuTableVC.swift */,
 				4D8D5E9D236B885600FA244C /* AppTabViewController.swift */,
+				8D3554BB2394C99B000DE724 /* OrderPlacingCellTwo.swift */,
+				8DF1B25F2394041700595379 /* OrderPlacingVCCell.swift */,
+				F40A8C6223CC191B00CF9DF6 /* FirstVC.swift */,
 			);
 			path = viewControllers;
 			sourceTree = "<group>";
@@ -326,6 +411,7 @@
 		EAB51E3223024052008C2792 /* third party */ = {
 			isa = PBXGroup;
 			children = (
+				4E4D3D7023A5AC640073253F /* FormatTextField */,
 				EAB51E262301CB8A008C2792 /* extensions */,
 				EAB51E3323024086008C2792 /* WormLib */,
 			);
@@ -449,6 +535,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4E4D17E23C48C1C0058038E /* Blogger_Sans.otf in Resources */,
 				89B66B4422FC824A003FE3EE /* LaunchScreen.storyboard in Resources */,
 				89B66B4122FC824A003FE3EE /* Assets.xcassets in Resources */,
 				89B66B3C22FC823D003FE3EE /* Main.storyboard in Resources */,
@@ -562,14 +649,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E4D3D8323A5ACB80073253F /* CardNumberFormatter.swift in Sources */,
 				EAC111AE2302AD9E00D31C2E /* OrderedProductListVC.swift in Sources */,
 				EA58E9602303AF930093036B /* MenuTableCell.swift in Sources */,
 				EAB51E2C2301E80F008C2792 /* OffersDiscountsCell.swift in Sources */,
 				EAB51E392302540E008C2792 /* FavouriteListCell.swift in Sources */,
+				4E4D3D8923A5ACB80073253F /* CardExpirationDateInputValidator.swift in Sources */,
 				EA58E9682303B4190093036B /* Constants.swift in Sources */,
+				4E4D3D8523A5ACB80073253F /* Formattable.swift in Sources */,
 				F8CB48DA23518A9D0020FC47 /* SignupVC.swift in Sources */,
+				4EF81AE123A60E5C007542C2 /* HoursTableViewCell.swift in Sources */,
 				89B66B6E22FCDC8A003FE3EE /* OrderVC.swift in Sources */,
 				F86EB0DD23536A3700B1C821 /* AddressItem.swift in Sources */,
+				8D3554BC2394C99B000DE724 /* OrderPlacingCellTwo.swift in Sources */,
 				EA0F681D2304984800329514 /* FoodListVC.swift in Sources */,
 				EAB51E3F23025B77008C2792 /* ProductListVC.swift in Sources */,
 				FAAD84DD2331C6DD006EF5C7 /* MenuTableVC.swift in Sources */,
@@ -577,12 +669,15 @@
 				89B66B6C22FCCFE3003FE3EE /* PaymentVC.swift in Sources */,
 				EADD624D2302C1BD00433E92 /* ContactVC.swift in Sources */,
 				EA58E96C2303BCE80093036B /* MenuTableCell0.swift in Sources */,
+				8DF1B2602394041700595379 /* OrderPlacingVCCell.swift in Sources */,
 				EAC111AA2302A68A00D31C2E /* OrderedProductItem.swift in Sources */,
 				89B66B3922FC823C003FE3EE /* PlaceOrderVC.swift in Sources */,
 				89B66B3F22FC823D003FE3EE /* DeliveryApp.xcdatamodeld in Sources */,
+				4E4D3D8623A5ACB80073253F /* RequiredInputValidator.swift in Sources */,
 				EA58E96A2303BC840093036B /* MenuTableCell1.swift in Sources */,
 				EADD624B2302C16100433E92 /* ProfileVC.swift in Sources */,
 				FAAD84E723325382006EF5C7 /* DateUtils.swift in Sources */,
+				4E4D3D8A23A5ACB80073253F /* DecimalInputValidator.swift in Sources */,
 				F87612272353096F0057EDFE /* OrderProductListCell.swift in Sources */,
 				89B66B3722FC823C003FE3EE /* AppDelegate.swift in Sources */,
 				F8CB48D623517B550020FC47 /* LoginVC.swift in Sources */,
@@ -590,20 +685,29 @@
 				EAB51E282301CBA9008C2792 /* UIView+Extensions.swift in Sources */,
 				EAC111AC2302AA1800D31C2E /* OrderedProductListCell.swift in Sources */,
 				EAB51E2E2301E835008C2792 /* OffersDiscountsItem.swift in Sources */,
+				8D4C56F6239A69F7008BCBAF /* AddressListCellDel.swift in Sources */,
+				4E4D3D8123A5ACB80073253F /* Validation.swift in Sources */,
+				4E4D3D8023A5ACB80073253F /* FormTextFieldTypeManager.swift in Sources */,
+				4E4D3D8723A5ACB80073253F /* InputValidator.swift in Sources */,
 				EA0F681F2304A83C00329514 /* CartVC.swift in Sources */,
 				EAC111B02302B34D00D31C2E /* MyOrdersVC.swift in Sources */,
 				4D8D5E9E236B885600FA244C /* AppTabViewController.swift in Sources */,
 				FAAD84DB2331A0BD006EF5C7 /* LocalStorage.swift in Sources */,
 				F867AFFA23559A2A00677F08 /* ForgotPassVC.swift in Sources */,
 				EA58E95E2303A11B0093036B /* MenuVC.swift in Sources */,
+				F40A8C6323CC191B00CF9DF6 /* FirstVC.swift in Sources */,
 				F86EB0DB235361B200B1C821 /* AddressListCell.swift in Sources */,
 				EA58E9622303AFBA0093036B /* MenuItem.swift in Sources */,
+				4E4D3D8223A5ACB80073253F /* FormTextFieldClearButton.swift in Sources */,
 				EAB51E312301EAAB008C2792 /* OffersDiscountsVC.swift in Sources */,
 				EAB51E3B2302543A008C2792 /* ProductItem.swift in Sources */,
 				89B66B6A22FCAFCD003FE3EE /* AddAddressVC.swift in Sources */,
 				EAB51E3723024086008C2792 /* WormTabStripButton.swift in Sources */,
+				4E4D3D8823A5ACB80073253F /* InputValidatable.swift in Sources */,
 				EAC111B22302B4F900D31C2E /* OrderProcessVC.swift in Sources */,
 				EAC111B42302B7A500D31C2E /* FirstViewController.swift in Sources */,
+				4E4D3D8B23A5ACB80073253F /* FormTextField.swift in Sources */,
+				4E4D3D8423A5ACB80073253F /* CardExpirationDateFormatter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -780,9 +884,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 97RVP9S94K;
+				DEVELOPMENT_TEAM = DA5FDH7Z9G;
 				INFOPLIST_FILE = DeliveryApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -801,9 +905,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 97RVP9S94K;
+				DEVELOPMENT_TEAM = DA5FDH7Z9G;
 				INFOPLIST_FILE = DeliveryApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -823,7 +927,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4KJ3L27A9Z;
+				DEVELOPMENT_TEAM = DA5FDH7Z9G;
 				INFOPLIST_FILE = DeliveryAppTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -845,7 +949,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4KJ3L27A9Z;
+				DEVELOPMENT_TEAM = DA5FDH7Z9G;
 				INFOPLIST_FILE = DeliveryAppTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -866,7 +970,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4KJ3L27A9Z;
+				DEVELOPMENT_TEAM = DA5FDH7Z9G;
 				INFOPLIST_FILE = DeliveryAppUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -887,7 +991,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4KJ3L27A9Z;
+				DEVELOPMENT_TEAM = DA5FDH7Z9G;
 				INFOPLIST_FILE = DeliveryAppUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -12,14 +12,28 @@ class AppTabViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        let orderItemData = AppConstants.getCartItems()
+        if orderItemData.isEmpty == false {
+        if let tabItems = tabBarController?.tabBar.items {
+            
+            // In this case we want to modify the badge number of the third tab:
+            let tabItem = tabItems[3]
+            tabItem.badgeValue = String(orderItemData.count)
+        }
+        } else {
+            if let tabItems = tabBarController?.tabBar.items {
+                
+                // In this case we want to modify the badge number of the third tab:
+                let tabItem = tabItems[3]
+                tabItem.badgeValue = nil
+            }
+        }
         // Do any additional setup after loading the view.
     }
-    
+   
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         var kBarHeight : CGFloat = tabBar.frame.size.height
-        
         tabBar.frame.size.height = kBarHeight + 10
         tabBar.frame.origin.y = view.frame.height - kBarHeight - 10
     }

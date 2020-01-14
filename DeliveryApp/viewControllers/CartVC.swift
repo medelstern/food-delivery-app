@@ -10,6 +10,7 @@ import UIKit
 
 extension UIViewController {
     
+    
     func hideKeyBoard() {
         let tap : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyBoard))
         view.addGestureRecognizer(tap)
@@ -20,31 +21,98 @@ extension UIViewController {
     }
 }
 
-class CartVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+class CartVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate , MyCellDelegate {
+    @IBOutlet weak var searchView: UIView!
+    @IBOutlet weak var searchImage: UIImageView!
+    @IBOutlet weak var searchBorder: UILabel!
+    @IBOutlet weak var searchTextF: UITextField!
+    
+    func btnCloseTapped(cell: UIView) {
+        let indexPath = self.tableView.indexPath(for: cell as! UITableViewCell)
+        self.indexPath = indexPath!.row
+        
+    }
+    
 
+    @IBOutlet weak var coupenBorder: UILabel!
+    @IBOutlet weak var noteBorder: UILabel!
+    @IBOutlet weak var continueToPaymentView: UIView!
+    @IBOutlet weak var couponView: UIView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var emptyView: UIView!
+    @IBOutlet weak var continuePaymentValue: UILabel!
     
+    
+    @IBOutlet weak var chargeView: UIView!
+    @IBOutlet weak var chargeViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var toPaymentViewBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var couponViewBottomConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var labelSubtotal: UILabel!
+    @IBOutlet weak var labelDeliveryCharge: UILabel!
+    @IBOutlet weak var labelTotal: UILabel!
+    
+    @IBOutlet weak var notesLb: UILabel!
+    
+    
+    @IBOutlet weak var couponLb: UILabel!
+    
+    weak var delegate: ProductListVCDelegate?
+    var cartItem = [ProductItem]()
+    var indexPath = 0
     var count : Int = 1
    
     var orderItemData: [OrderedProductItem] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Do any additional setup after loading the view.
         
         let logo = UIImage(named: "ic_logo")
         let imageView = UIImageView(image:logo)
         self.navigationItem.titleView = imageView
-        
+        self.searchView.isHidden = true
         self.hideKeyBoard()
-        loadData()
+        
  
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+       let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hidekeyBoard))
+        view.addGestureRecognizer(tapGesture)
+        
     }
-
+    @objc func hidekeyBoard() {
+        view.endEditing(true)
+    }
+    @IBAction func searchDisable(_ sender: Any) {
+           searchView.isHidden = true
+           searchImage.isHidden = false
+        searchTextF.text = nil
+        view.endEditing(true)
+           
+       }
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField.tag == 1 {
+            coupenBorder.backgroundColor = UIColor(red: 0, green: 174, blue: 239)
+            couponLb.textColor = UIColor(red: 0, green: 174, blue: 239)
+        } else if textField.tag == 0 {
+           noteBorder.backgroundColor = UIColor(red: 0, green: 174, blue: 239)
+           notesLb.textColor = UIColor(red: 0, green: 174, blue: 239)
+        }
+        searchImage.isHidden = true
+        searchBorder.backgroundColor = UIColor(red: 0, green: 174, blue: 239)
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        self.view.endEditing(true)
+        coupenBorder.backgroundColor = .gray
+        noteBorder.backgroundColor = .gray
+        notesLb.textColor = .gray
+        couponLb.textColor = .gray
+        self.view.endEditing(true)
+        searchBorder.backgroundColor = .gray
+        //textField.text = nil
+        searchView.isHidden = true
+    }
+    
+    
     override open func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -52,51 +120,63 @@ class CartVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITe
     }
     
     @IBAction func onSearch(_ sender: Any) {
-        let alert = UIAlertController(title: "Orderity", message: "", preferredStyle: .alert)
+      searchView.isHidden = false
         
-        
-        alert.addTextField { (textField) in
-            textField.placeholder = "Enter Detail"
-        }
-        
-        // 3. Grab the value from the text field, and print it when the user clicks OK.
-        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { [weak alert] (_) in
-            print("cerrar")
-        }))
-        
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { [weak alert] (_) in
-            
-        }))
-        // 4. Present the alert.
-        self.present(alert, animated: true, completion: nil)
     }
     
+    
+    func searchBarShouldBeginEditing(searchBar: UISearchBar) -> Bool {
+        let cancelSearchBarButtonItem = UIBarButtonItem(title: "Cancel", style: UIBarButtonItem.Style.plain, target: self, action: #selector(cancelBarButtonItemClicked))
+        self.navigationItem.setRightBarButton(cancelSearchBarButtonItem, animated: true)
+        return true
+    }
+    @objc func cancelBarButtonItemClicked (searchBar: UISearchBar) {
+        navigationItem.searchController = nil
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.hidesSearchBarWhenScrolling = false
+        navigationController?.navigationBar.prefersLargeTitles = false
+        self.view.endEditing(true)
+    }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        emptyView.isHidden = true
-        if orderItemData.count == 0 {
-            emptyView.isHidden = false
-        }
+        
+        let orderItemData = AppConstants.getCartItems()
+        if orderItemData.isEmpty == false {
         if let tabItems = tabBarController?.tabBar.items {
-            // In this case we want to modify the badge number of the third tab:
+            
+            var sum_count = 0
+            for item in orderItemData {
+                sum_count += item.getCount()
+            }
+            
             let tabItem = tabItems[3]
-            tabItem.badgeValue = String(orderItemData.count)
+            tabItem.badgeValue = String(sum_count)
         }
-        return orderItemData.count
+        } else {
+            if let tabItems = tabBarController?.tabBar.items {
+                let tabItem = tabItems[3]
+                tabItem.badgeValue = nil
+            }
+        }
+            
+        return AppConstants.getCartItems().count
+    
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "orderProductListCell", for: indexPath) as! OrderProductListCell
+        cell.delegate = self
         let data = orderItemData[indexPath.row]
         cell.setOrderProductData(data: data)
         cell.selectionStyle = .none
         cell.btnIncrease.tag = indexPath.row + 1000
         cell.btnDecrease.tag = indexPath.row + 2000
         cell.txtCount.tag = indexPath.row + 3000
+        cell.txtPrice.tag = indexPath.row + 4000
         
         cell.btnIncrease.addTarget(self, action: #selector(increateBtn1Tapped), for: .touchUpInside)
         cell.btnDecrease.addTarget(self, action: #selector(decreateBtn1Tapped), for: .touchUpInside)
@@ -108,70 +188,202 @@ class CartVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITe
         self.navigationController?.popViewController(animated: true)
     }
     
+    @IBAction func couponSendAction(_ sender: Any) {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        self.view.endEditing(true)
+    }
     @IBAction func btnContinueClicked(_ sender: Any) {
+        AppConstants.orderedProductList = orderItemData
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "placeOrderVC")as! PlaceOrderVC
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
+    @IBAction func contactVc(_ sender: Any) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "contactVC") as! ContactVC
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     @objc func decreateBtn1Tapped(sender: UIButton) {
-        let tagID = sender.tag
-        let label = self.view.viewWithTag(tagID + 1000) as! UILabel
-        count = Int(label.text!)!
-        if count > 1 {
-            count -= 1
-            label.text = "\(count)"
+        let indexPathRow = sender.tag - 2000
+        let item = orderItemData[indexPathRow]
+        let itemCount: Int = item.count
+        
+        if itemCount > 1 {
+            item.count -= 1
+            orderItemData[indexPathRow] = item
+            tableView.reloadData()
+            
+            self.cartItem = AppConstants.getCartItems()
+            let newItem = self.cartItem[indexPathRow]
+            newItem.count -= 1
+//          self.cartItem = AppConstants.getCartItems()
+            self.cartItem[indexPathRow] = newItem
+                    
+            var jsonDict = [[String: Any]]()
+            for child in self.cartItem {
+                jsonDict.append(child.toDictionary())
+            }
+            LocalStorage[SAVED_CARTS] = jsonDict
+//            self.delegate?.setUpCartItems()
+            
+            setUpPriceLabels()
+            
+            tableView.reloadData()
         } else {
             let alertController = UIAlertController(title: "WARNING", message:
                 "Are you sure you want to remove this item?", preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
-                self.orderItemData.remove(at: sender.tag - 2000)
-                self.tableView.reloadData()
+            alertController.addAction(UIAlertAction(title: "No", style: .default, handler: { (action) in
+                
             }))
             
-            alertController.addAction(UIAlertAction(title: "No", style: .default, handler: { (action) in }))
+            alertController.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
+                self.orderItemData.remove(at: indexPathRow)
+                self.cartItem = AppConstants.getCartItems()
+                self.cartItem.remove(at: indexPathRow)
+                
+                var jsonDict = [[String: Any]]()
+                for child in self.cartItem {
+                    jsonDict.append(child.toDictionary())
+                }
+                self.showToast(message: "Item Removed ")
+                LocalStorage[SAVED_CARTS] = jsonDict
+                self.delegate?.setUpCartItems()
+    
+                self.tableView.reloadData()
+                
+                self.setUpPriceLabels()
+
+                if AppConstants.getCartItems().count == 0 {
+                    UIView.animate(withDuration: 1.0) {
+                        self.tableView.isHidden = true
+                        self.emptyView.isHidden = false
+                        self.chargeView.isHidden = true
+                        self.continueToPaymentView.isHidden = true
+                        
+                        self.chargeViewTopConstraint.constant = -60
+                        self.toPaymentViewBottomConstraint.constant = 60
+                    }
+                }
+            }))
             self.present(alertController, animated: true, completion: nil)
         }
     }
     
+    var price = 5.99
+    
     @objc func increateBtn1Tapped(sender: UIButton) {
-        let tagID = sender.tag
-        let label = self.view.viewWithTag(tagID + 2000) as! UILabel
-        count = Int(label.text!)! + 1
-        label.text = "\(count)"
+        let indexPathRow = sender.tag - 1000
+        let item = orderItemData[indexPathRow]
+        
+        item.count += 1
+        orderItemData[indexPathRow] = item
+        
+        self.cartItem = AppConstants.getCartItems()
+        let newItem = self.cartItem[indexPathRow]
+        newItem.count += 1
+//        self.cartItem = AppConstants.getCartItems()
+        self.cartItem[indexPathRow] = newItem
+        
+        var jsonDict = [[String: Any]]()
+        for child in self.cartItem {
+            jsonDict.append(child.toDictionary())
+        }
+        LocalStorage[SAVED_CARTS] = jsonDict
+        self.delegate?.setUpCartItems()
+        
+        setUpPriceLabels()
+        tableView.reloadData()
+    }
+    
+    private func setUpPriceLabels() {
+        var subtotal: Float = 0
+        var totalCount = 0
+        print(orderItemData)
+        for item in orderItemData {
+            subtotal += item.getPrice()*Float(item.getCount())
+            totalCount += item.getCount()
+        }
+        
+        labelSubtotal.text = "$" + String(format: "%.2f", subtotal)
+        labelTotal.text = "$" + String(format: "%.2f", subtotal+4.00)
+        continuePaymentValue.text = "\(totalCount) Item : " + "$" + String(format: "%.2f", subtotal+4.00)
     }
    
+    override func viewWillDisappear(_ animated: Bool) {
+        var subtotal: Float = 0
+        
+        for item in orderItemData {
+            subtotal += item.getPrice()*Float(item.getCount())
+        }
+                
+        DateUtils.ContinueToPaymentValue = String(format: "%.2f", subtotal+4.00)
+    }
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             print("notification: Keyboard will show")
-            if self.view.frame.origin.y == 0{
-                self.view.frame.origin.y -= keyboardSize.height - 20
+            
+            UIView.animate(withDuration: 0.5) {
+                self.couponViewBottomConstraint.constant = (keyboardSize.height - 102 - 50)
+                self.view.layoutIfNeeded()
             }
+            
         }
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y != 0 {
-                self.view.frame.origin.y += keyboardSize.height - 20
+         
+            UIView.animate(withDuration: 0.5) {
+                self.couponViewBottomConstraint.constant = 0
+                self.view.layoutIfNeeded()
             }
-            self.view.frame.origin.y = 0
+
+            self.view.endEditing(true)
         }
     }
     
     override func viewWillAppear(_ animated: Bool){
-        self.navigationController?.navigationBar.isHidden = false
+        loadData()
+        self.navigationController?.navigationBar.isHidden = true
+       // tableView.reloadData()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     func loadData() {
-        let cartItems = AppConstants.getCartItems()
-        if cartItems.count > 0 {
-            var number : Int = 0
-            for _ in 1...cartItems.count {
-                orderItemData.append(OrderedProductItem(image: "1", title: "FARM HOUSE", feature: "Medium | New Hand tossed", desc: "Black Olives, Onion, capsicum, tomato, griled mushroom, golden corn, Jalapeno, Extra cheese", price: 5.99, count: cartItems[number].getCount()))
-                number += 1
-            }
+        orderItemData = []
+        
+        for item in AppConstants.getCartItems() {
+            orderItemData.append(OrderedProductItem(image: "1", title: item.productName, feature: "Medium | New Hand tossed", desc: item.description, price: item.price, count: item.count, date: item.getDate(), size: item.size, crust: item.crust, topic: item.topic))
         }
+        
+        let isTrue = DateUtils.isTrueContinueToPayment
+        if isTrue {
+            DateUtils.isTrueContinueToPayment = false
+        }
+        
+        setUpPriceLabels()
         self.tableView.reloadData()
+        
+        if orderItemData.count > 0 {
+            
+            self.tableView.isHidden = false
+            self.emptyView.isHidden = true
+            self.chargeView.isHidden = false
+            self.continueToPaymentView.isHidden = false
+            
+            self.chargeViewTopConstraint.constant = 0
+            self.toPaymentViewBottomConstraint.constant = 0
+            
+        } else {
+            self.tableView.isHidden = true
+            self.emptyView.isHidden = false
+            self.chargeView.isHidden = true
+            self.continueToPaymentView.isHidden = true
+            
+            self.chargeViewTopConstraint.constant = -60
+            self.toPaymentViewBottomConstraint.constant = 60
+        }
     }
 }

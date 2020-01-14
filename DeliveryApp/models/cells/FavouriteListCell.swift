@@ -14,6 +14,7 @@ class FavouriteListCell: UITableViewCell {
     @IBOutlet weak var txtDescription: UILabel!
     @IBOutlet weak var txtPrice: UILabel!
     @IBOutlet weak var btnAddToCart: UIButton!    
+    @IBOutlet weak var btnViewCard: UIButton!
     @IBOutlet weak var typeViewHeightConstraint: NSLayoutConstraint!
     
     public func setItemData(data: ProductItem) {

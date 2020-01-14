@@ -51,10 +51,10 @@ public struct WormTabStripStylePropertyies {
      **************************/
     
     //Padding of tabs text to each side
-    var kPaddingOfIndicator:CGFloat = 30
+    var kPaddingOfIndicator:CGFloat = 10
     
     //initial value for the tabs margin
-    var kWidthOfButtonMargin:CGFloat = 0
+    var kWidthOfButtonMargin:CGFloat = 10
     
     
     var isHideTopScrollView = false
@@ -68,8 +68,8 @@ public struct WormTabStripStylePropertyies {
      ************/
     // font size of tabs
     //let kFontSizeOfTabButton:CGFloat = 15
-    var tabItemDefaultFont:UIFont = UIFont(name: "arial", size: 14)!
-    var tabItemSelectedFont:UIFont = UIFont(name: "arial", size: 16)!
+    var tabItemDefaultFont:UIFont = UIFont(name: "arial", size: 18)!
+    var tabItemSelectedFont:UIFont = UIFont(name: "arial", size: 18)!
     
     /*****
      colors
@@ -81,7 +81,7 @@ public struct WormTabStripStylePropertyies {
     
     //color for worm
     var WormColor:UIColor = UIColor(netHex: 0xfffff)  //0x1EAAF1
-    var topScrollViewBackgroundColor:UIColor = UIColor(netHex: 0xffffff)   //0x364756
+    var topScrollViewBackgroundColor:UIColor = UIColor(netHex: 0xfafafa)   //0x364756
     var contentScrollViewBackgroundColor:UIColor = UIColor.gray
     var dividerBackgroundColor:UIColor = UIColor.white
     
@@ -160,19 +160,26 @@ public class WormTabStrip: UIView,UIScrollViewDelegate {
         //            titles.append(delegate.EYTitlesOfTab(i))
         //            contentViews.append(delegate.EYviewOfTab(i))
         //        }
-        //        
+        //
         //        if titles.count != contentViews.count {
         //            assert(false, "title's size and contentView's size not matching")
         //        }
     }
     
-    
     // add top scroll view to the view stack which will contain the all the tabs
     private func addTopScrollView(){
-        topScrollView.frame = CGRect(x: 0,y: 0, width:Width,height:eyStyle.kHeightOfTopScrollView)
+        var leftView:UIView = UIView(frame: CGRect(x: 0,y: 0, width:10,height:eyStyle.kHeightOfTopScrollView))
+        leftView.backgroundColor = eyStyle.topScrollViewBackgroundColor
+        
+        var rightView:UIView = UIView(frame: CGRect(x:Width - 10,y: 0, width:10,height:eyStyle.kHeightOfTopScrollView))
+        rightView.backgroundColor = eyStyle.topScrollViewBackgroundColor
+        
+        topScrollView.frame = CGRect(x: 0,y: 0, width:Width - 0,height:eyStyle.kHeightOfTopScrollView)
         topScrollView.backgroundColor = eyStyle.topScrollViewBackgroundColor
         topScrollView.showsHorizontalScrollIndicator = false
         self.addSubview(topScrollView)
+        self.addSubview(leftView)
+        self.addSubview(rightView)
     }
     // add divider between the top scroll view and content scroll view
     private func addDivider(){
@@ -237,10 +244,11 @@ public class WormTabStrip: UIView,UIScrollViewDelegate {
         tab.paddingToEachSide = eyStyle.kPaddingOfIndicator
         //            tab.backgroundColor = UIColor.yellowColor()
         tab.tabText = delegate!.WTSTitleForTab(index: tab.index!) as NSString?
-        tab.textColor = eyStyle.tabItemDefaultColor
+        tab.textColor = UIColor.gray
         tab.frame.origin.x = XOffset
         tab.frame.origin.y = 0
         tab.textAlignment = .center
+        tab.font = UIFont(name:"HelveticaNeue-Bold", size: 18.0)
         tab.isUserInteractionEnabled = true
         let tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.tabPress(sender:)))
         tap.numberOfTapsRequired = 1
@@ -268,10 +276,10 @@ public class WormTabStrip: UIView,UIScrollViewDelegate {
      ***/
     private func checkAndJustify(){
         if dynamicWidthOfTopScrollView < Width && !isJustified {
-            isJustified = true            
+            isJustified = true
             // calculate the available space
             let gap:CGFloat = Width - dynamicWidthOfTopScrollView
-            // increase the space by dividing available space to # of tab plus one 
+            // increase the space by dividing available space to # of tab plus one
             //plus one bc we always want to have margin from last tab to to right edge of screen
             eyStyle.spacingBetweenTabs +=  gap/CGFloat(delegate!.WTSNumberOfTabs()+plusOneforMarginOfLastTabToScreenEdge)
             dynamicWidthOfTopScrollView = 0
@@ -360,7 +368,7 @@ public class WormTabStrip: UIView,UIScrollViewDelegate {
         if XofTab - toLeftOfScreen < 0 {
             return
         }
-        //center it 
+        //center it
         if topScrollView.contentSize.width - XofTab+tab.frame.width > toLeftOfScreen{
             // XofTab = x + (screenWidth-tab.frame.width)/2
             let offsetX = XofTab - toLeftOfScreen
@@ -428,7 +436,7 @@ public class WormTabStrip: UIView,UIScrollViewDelegate {
                 return
             }
             
-            //if currentTab is not last one do worm to next tab position 
+            //if currentTab is not last one do worm to next tab position
             if currentTabIndex + 1 <= tabs.count {
                 let nextDistance:CGFloat = calculateNextMoveDistance(gap: gap, nextTotal: getNextTotalWormingDistance(index: currentTabIndex+1))
                 // println(nextDistance)
@@ -555,14 +563,14 @@ public class WormTabStrip: UIView,UIScrollViewDelegate {
     
     private func makePrevTabDefaultStyle(){
         let tab = tabs[prevTabIndex]
-        tab.textColor = eyStyle.tabItemDefaultColor
-        tab.font = eyStyle.tabItemDefaultFont
+        tab.textColor = UIColor.gray
+//        tab.font = UIFont(name:"HelveticaNeue-Bold", size: 18.0)
     }
     
     private func makeCurrentTabSelectedStyle(){
         let tab = tabs[currentTabIndex]
         tab.textColor = eyStyle.tabItemSelectedColor
-        tab.font = eyStyle.tabItemSelectedFont
+//        tab.font = eyStyle.tabItemSelectedFont
     }
     /*************************************************
      //MARK:  Worm Calculations Ends

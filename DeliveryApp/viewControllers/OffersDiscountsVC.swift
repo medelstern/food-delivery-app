@@ -8,7 +8,11 @@
 
 import UIKit
 
-class OffersDiscountsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class OffersDiscountsVC: UIViewController, UITableViewDelegate, UITableViewDataSource ,UITextFieldDelegate {
+    @IBOutlet weak var searchView: UIView!
+      @IBOutlet weak var searchImage: UIImageView!
+      @IBOutlet weak var searchBorder: UILabel!
+    @IBOutlet weak var searchTextF: UITextField!
     
     @IBOutlet weak var tableView: UITableView!
     var offersDiscountsData: [OffersDiscountsItem] = []
@@ -18,25 +22,32 @@ class OffersDiscountsVC: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     @IBAction func onSearch(_ sender: Any) {
-        let alert = UIAlertController(title: "Orderity", message: "", preferredStyle: .alert)
-        
-        
-        alert.addTextField { (textField) in
-            textField.placeholder = "Enter Detail"
-        }
-        
-        // 3. Grab the value from the text field, and print it when the user clicks OK.
-        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { [weak alert] (_) in
-            print("cerrar")
-        }))
-        
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { [weak alert] (_) in
-          
-        }))
-        // 4. Present the alert.
-        self.present(alert, animated: true, completion: nil)
+       searchView.isHidden = false
     }
-    
+    @IBAction func contactVc(_ sender: Any) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "contactVC") as! ContactVC
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    @objc func hidekeyBoard() {
+        view.endEditing(true)
+    }
+    @IBAction func searchDisable(_ sender: Any) {
+        searchView.isHidden = true
+        view.endEditing(true)
+        searchImage.isHidden = false
+        searchTextF.text = nil
+        
+    }
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        searchImage.isHidden = true
+        searchBorder.backgroundColor = UIColor(red: 0, green: 174, blue: 239)
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        self.view.endEditing(true)
+        searchBorder.backgroundColor = .gray
+        textField.text = nil
+        searchView.isHidden = true
+    }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "offersDiscountsCell", for: indexPath) as! OffersDiscountsCell
         cell.setData(offersDiscountsData[indexPath.row])
@@ -60,15 +71,17 @@ class OffersDiscountsVC: UIViewController, UITableViewDelegate, UITableViewDataS
         let logo = UIImage(named: "ic_logo")
         let imageView = UIImageView(image:logo)
         self.navigationItem.titleView = imageView
-        
         self.tableView.backgroundColor = UIColor.clear
         loadData()
+        self.searchView.isHidden = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hidekeyBoard))
+        view.addGestureRecognizer(tapGesture)
     }
     
     @objc func copiedCode(sender: UIButton!) {
         UIPasteboard.general.string = offersDiscountsData[sender.tag].getActionTitle()
        
-        let actionTitle : String = offersDiscountsData[sender.tag].getActionTitle()
+        let actionTitle : String = "Copied to Keyboard"
         
         showToast(message: actionTitle)
     }
@@ -89,7 +102,7 @@ class OffersDiscountsVC: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     override func viewWillAppear(_ animated: Bool){
-        self.navigationController?.navigationBar.isHidden = false
+        self.navigationController?.navigationBar.isHidden = true
         
     }
     

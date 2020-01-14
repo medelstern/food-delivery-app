@@ -15,9 +15,12 @@ class OrderedProductListVC: UIViewController, UITableViewDelegate, UITableViewDa
     var orderedItemData: [OrderedProductItem] = []
     
     func loadData() {
-        orderedItemData.append(OrderedProductItem(image: "1", title: "Farm House", feature: "Medium | New hand tossed", desc: "Black Olives, Onion, capsicum, tomato, grilled mushroom, golden com, Jalapeno Extra chese", price: 5.99, count: 1))
-        orderedItemData.append(OrderedProductItem(image: "2", title: "Iced Cod", feature: "Large", desc: "No customization available", price: 1.99, count: 1))
-        orderedItemData.append(OrderedProductItem(image: "3", title: "Farm House", feature: "Medium | New hand tossed", desc: "Black Olives, Onion, capsicum, tomato, grilled mushroom, golden com, Jalapeno Extra chese", price: 8.99, count: 1))
+        orderedItemData.append(OrderedProductItem(image: "1", title: "Farm House", feature: "Medium | New hand tossed", desc: "Black Olives, Onion, capsicum, tomato, grilled mushroom, golden com, Jalapeno Extra chese", price: 5.99, count: 1, date: "", size: 1, crust: 1, topic: [0, 0, 1, 0, 0]))
+        orderedItemData.append(OrderedProductItem(image: "2", title: "Iced Cod", feature: "Large", desc: "No customization available", price: 1.99, count: 1, date: "", size: 1, crust: 1, topic: [0, 1, 0, 2, 0]))
+        orderedItemData.append(OrderedProductItem(image: "3", title: "Farm House", feature: "Medium | New hand tossed", desc: "Black Olives, Onion, capsicum, tomato, grilled mushroom, golden com, Jalapeno Extra chese", price: 8.99, count: 1, date: "", size: 1, crust: 1, topic: [0, 1, 0, 2, 0]))
+        orderedItemData.append(OrderedProductItem(image: "1", title: "Farm House", feature: "Medium | New hand tossed", desc: "Black Olives, Onion, capsicum, tomato, grilled mushroom, golden com, Jalapeno Extra chese", price: 5.99, count: 1, date: "", size: 1, crust: 1, topic: [0, 1, 0, 0, 0]))
+        orderedItemData.append(OrderedProductItem(image: "2", title: "Iced Cod", feature: "Large", desc: "No customization available", price: 1.99, count: 1, date: "", size: 1, crust: 1, topic: [0, 1, 0, 0, 0]))
+        orderedItemData.append(OrderedProductItem(image: "3", title: "Farm House", feature: "Medium | New hand tossed", desc: "Black Olives, Onion, capsicum, tomato, grilled mushroom, golden com, Jalapeno Extra chese", price: 8.99, count: 1, date: "", size: 1, crust: 1, topic: [0, 1, 0, 0, 0]))
         self.tableView.reloadData()
     }
     
@@ -36,7 +39,7 @@ class OrderedProductListVC: UIViewController, UITableViewDelegate, UITableViewDa
     @IBAction func onEditAddress(_ sender: Any) {
         
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "AddAddressVC")as! AddAddressVC
-        self.navigationController?.pushViewController(vc, animated: true)
+        //self.navigationController?.pushViewController(vc, animated: true)
     }
     
     

@@ -9,20 +9,44 @@
 import Foundation
 
 class OrderedProductItem {
-    private var productImage: String!
-    private var productTitle: String!
-    private var productFeature: String!
-    private var productDescription: String!
-    private var productPrice: Float!
-    private var count: Int!
-    
-    init(image: String, title: String, feature: String, desc: String, price: Float, count: Int) {
+    var productImage: String!
+    var productTitle: String!
+    var productFeature: String!
+    var productDescription: String!
+    var productPrice: Float!
+    var count: Int!
+    var size: Int
+    var crust: Int
+    var topic: [Int]
+    var dateString: String!
+
+    init(image: String, title: String, feature: String, desc: String, price: Float, count: Int, date: String, size: Int, crust: Int, topic: [Int]) {
         self.productImage = image
         self.productTitle = title
         self.productFeature = feature
         self.productDescription = desc
         self.productPrice = price
         self.count = count
+        self.size = size
+        self.crust = crust
+        self.topic = topic
+        self.dateString = date
+    }
+    
+    func toDictionary() -> [String: Any] {
+        var dict = [String: Any]()
+        dict["productImage"] = productImage
+        dict["productTitle"] = productTitle
+        dict["productFeature"] = productFeature
+        dict["productDescription"] = productDescription
+        dict["productPrice"] = productPrice
+        dict["count"] = count
+        dict["size"] = size
+        dict["crust"] = crust
+        dict["topic"] = topic
+        dict["dateString"] = dateString
+
+        return dict
     }
     
     public func getImage() -> String {
@@ -47,6 +71,10 @@ class OrderedProductItem {
     
     public func getCount() -> Int {
         return self.count
+    }
+    
+    public func getDateString() -> String {
+        return self.dateString
     }
     
     

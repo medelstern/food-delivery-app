@@ -12,8 +12,39 @@ class ProfileVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
 
     @IBOutlet weak var tableView: UITableView!
     
-    override func viewDidLoad() {
+    @IBOutlet weak var emailBorder: UILabel!
+    @IBOutlet weak var fullBorder: UILabel!
+    @IBOutlet weak var phnNumerBorder: UILabel!
+    
+    @IBOutlet weak var phoneNumberLb: UILabel!
+    
+    @IBOutlet weak var emailLb: UILabel!
+    @IBOutlet weak var fullnameLb: UILabel!
+    
+    @IBOutlet weak var updateBtnWidth: NSLayoutConstraint!
+    
+    @IBOutlet weak var updateBtnLeftSpace: NSLayoutConstraint!
+    
+    @IBOutlet weak var saveAddressLeftSpace: NSLayoutConstraint!
+    
+    @IBOutlet weak var addNewRightSpace: NSLayoutConstraint!
+    
+    @IBOutlet weak var tableViewRightSpace: NSLayoutConstraint!
+    @IBOutlet weak var tableViewLeftSpace: NSLayoutConstraint!
+    
+  override func viewDidLoad() {
         super.viewDidLoad()
+        if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.pad)
+        {
+            let s_sapce = CGFloat(150.0)
+            updateBtnWidth.constant = -2*s_sapce
+            updateBtnLeftSpace.constant = s_sapce
+            saveAddressLeftSpace.constant = s_sapce + 20.0
+            addNewRightSpace.constant = s_sapce + 20.0
+            tableViewLeftSpace.constant = s_sapce
+            tableViewRightSpace.constant = -1*s_sapce
+//            tableView.frame.size.width = tableView.frame.size.width - 300
+        }
         self.hideKeyBoard()
         loadData()
         
@@ -23,9 +54,35 @@ class ProfileVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         // Do any additional setup after loading the view.
     }
     
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        emailBorder.backgroundColor = .gray
+        fullBorder.backgroundColor = .gray
+        phnNumerBorder.backgroundColor = .gray
+        
+        phoneNumberLb.textColor = .gray
+        fullnameLb.textColor = .gray
+        emailLb.textColor = .gray
+    }
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField.tag == 0 {
+            phnNumerBorder.backgroundColor = UIColor(red: 0, green: 174, blue: 239)
+            phoneNumberLb.textColor = UIColor(red: 0, green: 174, blue: 239)
+        }else if  textField.tag == 1 {
+            fullBorder.backgroundColor = UIColor(red: 0, green: 174, blue: 239)
+             fullnameLb.textColor = UIColor(red: 0, green: 174, blue: 239)
+        } else {
+            emailBorder.backgroundColor = UIColor(red: 0, green: 174, blue: 239)
+            emailLb.textColor = UIColor(red: 0, green: 174, blue: 239)
+        }
+    }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
+    }
+    
+    @IBAction func contactVc(_ sender: Any) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "contactVC") as! ContactVC
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -54,13 +111,10 @@ class ProfileVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         
         // Present dialog message to user
         self.present(dialogMessage, animated: true, completion: nil)
-        
-        
-        
     }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "addressListCell", for: indexPath) as! AddressListCell
-        
         cell.setAddressData(data: AppConstants.addressList[indexPath.row])
         cell.selectionStyle = .none
         cell.btnRemove.tag = indexPath.row
@@ -74,7 +128,7 @@ class ProfileVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         
         // Create OK button with action handler
         let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
-           
+            self.showToast(message: "Address Removed")
             AppConstants.addressList.remove(at: sender.tag)
             self.tableView.reloadData()
         })
@@ -99,13 +153,13 @@ class ProfileVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     }
     
     override func viewWillAppear(_ animated: Bool){
-        self.navigationController?.navigationBar.isHidden = false
+        self.navigationController?.navigationBar.isHidden = true
         self.tableView.reloadData()
         
     }
     
     @IBAction func changePasswordPressed(_ sender: Any) {
-        let alertController = UIAlertController(title: "Change password", message:
+        let alertController = UIAlertController(title: "Password Changed", message:
                         "", preferredStyle: .alert)
         
         alertController.addTextField { (textField: UITextField) in
@@ -138,10 +192,12 @@ class ProfileVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
             textField.font = UIFont(name: "", size: 14)
         }
         
-        alertController.addAction(UIAlertAction(title: "Save", style: .default, handler: { (action) in }))
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: { (action) in }))
+        alertController.addAction(UIAlertAction(title: "Save", style: .default, handler: { (action) in
+            self.showToast(message: "Password Change")
+        }))
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in }))
         
-        alertController.view.tintColor = UIColor.green
+        //alertController.view.tintColor = UIColor.green
         alertController.view.layer.cornerRadius = 20
 
         self.present(alertController, animated: true, completion: nil)
@@ -155,8 +211,8 @@ class ProfileVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
 
     
     func loadData() {
-        AppConstants.addressList.append(AddressItem(type: "Home", address: "1011 US Hwy 72 East, Athens AL 35611. 1717 South College Street, Auburn AL 36830. 701 Mcmeans Ave"))
-        AppConstants.addressList.append(AddressItem(type: "Home", address: "1011 US Hwy 72 East, Athens AL 35611. 1717 South College Street, Auburn AL 36830. 701 Mcmeans Ave"))
+        //AppConstants.addressList.append(AddressItem(type: "Home", address: "1011 US Hwy 72 East, Athens AL 35611. 1717 South College Street, Auburn AL 36830. 701 Mcmeans Ave"))
+       // AppConstants.addressList.append(AddressItem(type: "Home", address: "1011 US Hwy 72 East, Athens AL 35611. 1717 South College Street, Auburn AL 36830. 701 Mcmeans Ave"))
         self.tableView.reloadData()
     }
 }

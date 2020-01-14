@@ -37,7 +37,7 @@ struct AppConstants {
     }
     
     static var addressList: [AddressItem] = []
-    
+    static var orderedProductList: [OrderedProductItem] = []
 }
 
 

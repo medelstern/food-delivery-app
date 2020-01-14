@@ -10,6 +10,36 @@ import UIKit
 
 class SignupVC: UIViewController, UITextFieldDelegate {
 
+    @IBOutlet weak var fullnameLb: UILabel!
+    
+    @IBOutlet weak var fullnameText: UITextField!
+    
+    @IBOutlet weak var fullnameBorder: UILabel!
+    
+    
+    @IBOutlet weak var emailLb: UILabel!
+    
+    @IBOutlet weak var emailText: UITextField!
+    
+    @IBOutlet weak var emailBorder: UILabel!
+    
+    @IBOutlet weak var passwordLb: UILabel!
+    
+    @IBOutlet weak var passwordText: UITextField!
+    
+    @IBOutlet weak var passwordBorder: UILabel!
+    
+    @IBOutlet weak var phoneLb: UILabel!
+    
+    @IBOutlet weak var phoneText: UITextField!
+    
+    @IBOutlet weak var phoneBorder: UILabel!
+    
+    @IBOutlet weak var addressLb: UILabel!
+    
+    @IBOutlet weak var addressBorder: UILabel!
+    
+    @IBOutlet weak var addressText: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -24,7 +54,48 @@ class SignupVC: UIViewController, UITextFieldDelegate {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
-    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        fullnameBorder.backgroundColor = .gray
+        fullnameLb.textColor = .gray
+        emailBorder.backgroundColor = .gray
+        emailLb.textColor = .gray
+        passwordBorder.backgroundColor = .gray
+        passwordLb.textColor = .gray
+        phoneBorder.backgroundColor = .gray
+        phoneLb.textColor = .gray
+        addressBorder.backgroundColor = .gray
+        addressLb.textColor = .gray
+    }
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        
+        if(textField == fullnameText)
+        {
+            fullnameBorder.backgroundColor = UIColor(red: 0, green: 174, blue: 239)
+            fullnameLb.textColor = UIColor(red: 0, green: 174, blue: 239)
+        }
+        if(textField == emailText)
+        {
+           emailBorder.backgroundColor = UIColor(red: 0, green: 174, blue: 239)
+            emailLb.textColor = UIColor(red: 0, green: 174, blue: 239)
+        }
+        if(textField == passwordText)
+        {
+           passwordBorder.backgroundColor = UIColor(red: 0, green: 174, blue: 239)
+           passwordLb.textColor = UIColor(red: 0, green: 174, blue: 239)
+        }
+        if(textField == phoneText)
+        {
+           phoneBorder.backgroundColor = UIColor(red: 0, green: 174, blue: 239)
+           phoneLb.textColor = UIColor(red: 0, green: 174, blue: 239)
+        }
+        if(textField == addressText)
+        {
+           addressBorder.backgroundColor = UIColor(red: 0, green: 174, blue: 239)
+           addressLb.textColor = UIColor(red: 0, green: 174, blue: 239)
+        }
+        
+          
+    }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false

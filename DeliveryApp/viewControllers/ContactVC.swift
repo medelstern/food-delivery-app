@@ -13,17 +13,46 @@ import MapKit
 class ContactVC: UIViewController {
 
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var hoursTableView: UITableView!
+    
+    @IBOutlet weak var viewRatio: NSLayoutConstraint!
+    
+    @IBOutlet weak var bottomView: UIView!
+    var weekDays: [String] = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+         if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.pad)
+              {
+                let s_aspect = CGFloat(0.4)
+              let f_constraint = viewRatio.constraintWithMultiplier(s_aspect)
+        bottomView.removeConstraint(viewRatio)
+          bottomView.addConstraint(f_constraint)
+            }
+        tabBarController?.tabBar.selectedImageTintColor = .gray
 
         // Do any additional setup after loading the view.
+        let appleHQ = CLLocation(latitude: 53.478162, longitude: -2.244666)
+        let regionRadius : CLLocationDistance = 300.0
+        let region = MKCoordinateRegion(center: appleHQ.coordinate, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
         
+        let placeMark = MKPointAnnotation()
+        placeMark.title = "Our Office"
+        placeMark.coordinate = appleHQ.coordinate
+        mapView.addAnnotation(placeMark)
+                
+        mapView.setRegion(region, animated: true)
         let logo = UIImage(named: "ic_logo")
         let imageView = UIImageView(image:logo)
         self.navigationItem.titleView = imageView
+        self.navigationController?.navigationBar.isHidden = false
+        
     }
-
+    override func viewWillDisappear(_ animated: Bool) {
+        tabBarController?.tabBar.selectedImageTintColor = UIColor(named: "#157efb")
+    }
     @IBAction func onBackPressed(_ sender: Any) {
+        tabBarController?.tabBar.selectedImageTintColor = .blue
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -86,3 +115,23 @@ extension ContactVC: MFMailComposeViewControllerDelegate, MKMapViewDelegate {
         controller.dismiss(animated: true)
     }
 }
+
+extension ContactVC: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return weekDays.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "HoursTableViewCell", for: indexPath) as! HoursTableViewCell
+        cell.labelWeekday.text = weekDays[indexPath.row]
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 28
+    }
+    
+    
+    
+}
+

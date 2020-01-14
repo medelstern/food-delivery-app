@@ -30,37 +30,89 @@ class OrderPlacingVC: UIViewController {
     @IBOutlet weak var lblSmallPrice: UILabel!
     @IBOutlet weak var lblCart: UILabel!
     
+    @IBOutlet weak var selectSizeView: UIStackView!
+    
+    @IBOutlet weak var topicCollectionView: UICollectionView!
+    @IBOutlet weak var collectionView: UICollectionView!
+    
+    @IBOutlet weak var cartPriceView: UIView!
+    @IBOutlet weak var cartPriceBottomConstraint: NSLayoutConstraint!
+    
+    var timerForShowScrollIndicator: Timer?
     var count = 1
     var price = 5.99
     var select_type = 0
     var select_price = 1
     var selectedProduct: ProductItem!
     var cartItems = [ProductItem]()
-
+    var selectCrust = ["Cheesy", "Normal", "Saussage","Italian"]
+    var selecttopics = ["Tomato", "Corn", "Jalapenos", "Pineapple", "Pepperoni"]
+    var cellText:[String] = [""]
+    var topicRateText:[Double] = [2.99,5.67,7.43,10.99,1.90]
+    var CrustRateText:[Double] = [9.99,5.67,3.49,8.99]
+    var CrustRate:Double = 0
+    var TopicsRate:Double = 0
+    var index:IndexPath?
+    var index2:IndexPath?
+    var selectedIndex:Int?
+    var cellIndex = [IndexPath]()
+    var xDictionaryList: [Int:Int] = [:]
+    var totalPrice: Float = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        collectionView.isHidden = true
+        topicCollectionView.isHidden = true
         // Do any additional setup after loading the view.
         self.navigationController?.navigationBar.isHidden = true
         
         lblCount.text = "\(count)"
-        lblPrice.text = String(format: "$%.2f", 5.99*Float(count))
-        
-        selectedProduct = ProductItem(name: "FARM HOUSE", desc: "A pizza that goes ballistic on veggies! Check out this mouth watering overload of crunchy, crisp capsicum, succulent, etc.ballistic on veggies! Check out this mouth watering overload of ", price: 5.99, oneType: true, count: 1)
-        
+        setUpCartPrice(price: 5.99*Float(count))
+
         updateSelctViews()
         updateSelectPriceViews()
         setUpCartItems()
+        startTimerForShowScrollIndicator()
     }
-    
+    @objc func showScrollIndicatorsInContacts() {
+        UIView.animate(withDuration: 0.001) {
+            self.topicCollectionView.flashScrollIndicators()
+            self.collectionView.flashScrollIndicators()
+        }
+    }
+
+    func startTimerForShowScrollIndicator() {
+        self.timerForShowScrollIndicator = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.showScrollIndicatorsInContacts), userInfo: nil, repeats: true)
+    }
+
+    func stopTimerForShowScrollIndicator() {
+        self.timerForShowScrollIndicator?.invalidate()
+        self.timerForShowScrollIndicator = nil
+    }
+    func setScrollBar()
+    {
+        topicCollectionView.flashScrollIndicators()
+        collectionView.flashScrollIndicators()
+    }
     private func setUpCartItems() {
         cartItems = AppConstants.getCartItems()
         var sum_price = Float(0.0)
+        var sum_count = 0
         for item in cartItems {
-            sum_price += item.getPrice()
+            sum_price += item.getPrice() * Float(item.getCount())
+            sum_count += item.getCount()
         }
-        let price_str = String(format: "%.2f", sum_price)
-        lblCart.text = "\(cartItems.count) Item : \(price_str)$"
+        lblCart.text = "\(sum_count) Item : $\(String(format: "%.2f", sum_price))"
+        topicRateText[1] = Double(String(format: "%.2f", sum_price))!
+        CrustRateText[1] = Double(String(format: "%.2f", sum_price))!
+        let cartHeight = sum_price == 0 ? 65 : 0
+        self.cartPriceView.isHidden = cartHeight != 0
+        self.cartPriceBottomConstraint.constant = CGFloat(cartHeight)
+    }
+    
+    private func setUpCartPrice(price: Float) {
+        lblPrice.text = "$" + String(format: "%.2f", price)
+        totalPrice = price
     }
 
     @IBAction func onBack(_ sender: Any) {
@@ -69,25 +121,36 @@ class OrderPlacingVC: UIViewController {
     }
     
     @IBAction func selectSizePressed(_ sender: Any) {
+        collectionView.isHidden = true
+        topicCollectionView.isHidden = true
         select_type = 0
         updateSelctViews()
     }
     
     @IBAction func selectCrustPressed(_ sender: Any) {
+        collectionView.isHidden = false
+        topicCollectionView.isHidden = true
+        cellText = selectCrust
         select_type = 1
         updateSelctViews()
+        //collectionView.reloadData()
     }
     
     @IBAction func selectTopicsPressed(_ sender: Any) {
+        collectionView.isHidden = true
+        topicCollectionView.isHidden = false
+        cellText = selecttopics
         select_type = 2
         updateSelctViews()
+        //collectionView.reloadData()
     }
     
     @IBAction func increasePressed(_ sender: Any) {
         count += 1
         selectedProduct.setCount(count: count)
         lblCount.text = "\(count)"
-        lblPrice.text = String(format: "$%.2f", 5.99*Float(count))
+        let totalPrice = (price + TopicsRate + CrustRate)
+        setUpCartPrice(price: Float(totalPrice)*Float(count))
     }
     
     @IBAction func decreasePressed(_ sender: Any) {
@@ -95,52 +158,124 @@ class OrderPlacingVC: UIViewController {
             count -= 1
             selectedProduct.setCount(count: count)
             lblCount.text = "\(count)"
-            lblPrice.text = String(format: "$%.2f", Float(price)*Float(count))
+            let totalPrice = (price + TopicsRate + CrustRate)
+            setUpCartPrice(price: Float(totalPrice)*Float(count))
+            
         }
+        
+        
     }
     
     @IBAction func mediumPricePressed(_ sender: Any) {
+        selectedProduct.size = 1
         select_price = 1
         updateSelectPriceViews()
         price = 5.99
         selectedProduct.setPrice(price: Float(price))
-        lblPrice.text = String(format: "$%.2f", Float(price)*Float(count))
+        let totalRate = Float(price + TopicsRate + CrustRate)
+        setUpCartPrice(price: totalRate)
+
     }
     
     @IBAction func largePricePressed(_ sender: Any) {
+        selectedProduct.size = 2
         select_price = 2
         updateSelectPriceViews()
         price = 7.99
         selectedProduct.setPrice(price: Float(price))
-        lblPrice.text = String(format: "$%.2f", Float(price)*Float(count))
+        let totalRate = Float(price + TopicsRate + CrustRate)
+        setUpCartPrice(price: totalRate)
     }
     
     @IBAction func smallPricePressed(_ sender: Any) {
+        selectedProduct.size = 0
         select_price = 0
         updateSelectPriceViews()
         price = 4.99
         selectedProduct.setPrice(price: Float(price))
-        lblPrice.text = String(format: "$%.2f", Float(price)*Float(count))
+        let totalRate = Float(price + TopicsRate + CrustRate)
+        setUpCartPrice(price: totalRate)
+    }
+    
+    func showTost(message : String) {
+        let toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 100, y: self.view.frame.size.height-150, width: 200, height: 35))
+        toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        toastLabel.textColor = UIColor.white
+        toastLabel.textAlignment = .center;
+        toastLabel.font = UIFont(name: "Montserrat-Light", size: 12.0)
+        toastLabel.text = message
+        toastLabel.alpha = 1.0
+        toastLabel.layer.cornerRadius = 10;
+        toastLabel.clipsToBounds  =  true
+        self.view.addSubview(toastLabel)
+       
+        UIView.animate(withDuration: 4.0, delay: 0.1, options: .curveEaseOut, animations: {
+            toastLabel.alpha = 0.0
+        }, completion: {(isCompleted) in
+            toastLabel.removeFromSuperview()
+        })
     }
     
     @IBAction func addToCartPressed(_ sender: Any) {
-        var cartItems = AppConstants.getCartItems()
-        for _ in 1...count {
-            cartItems.append(selectedProduct)
-        }
-        var jsonDict = [[String: Any]]()
-        for child in cartItems {
-            jsonDict.append(child.toDictionary())
+        
+        if CrustRate == 0 {
+            print("select your crust rate & topicsRate")
+            showTost(message: "Select Your Crust")
+            
+        } else if TopicsRate == 0 {
+           showTost(message: "Select Your Topics")
+        } else {
+            var cartItems: [ProductItem] = []
+            selectedProduct.price = Float(price + TopicsRate + CrustRate)
+            selectedProduct.setCount(count: count)
+            
+            var isUpdated = false
+            for item in AppConstants.getCartItems() {
+                if item.itemID == selectedProduct.itemID && item.size == selectedProduct.size && item.crust == selectedProduct.crust && item.topic == selectedProduct.topic {
+                    let newItem = item
+                    newItem.count = item.count + selectedProduct.count
+                    cartItems.append(newItem)
+                    isUpdated = true
+                } else {
+                    cartItems.append(item)
+                }
+            }
+            if !isUpdated {
+                cartItems.append(selectedProduct)
+            }
+                    
+            var jsonDict = [[String: Any]]()
+            for child in cartItems {
+                child.setDate(date: Date())
+                jsonDict.append(child.toDictionary())
+            }
+        
+            LocalStorage[SAVED_CARTS] = jsonDict
+
+            var sum_price = Float(0.0)
+            var sum_count = 0
+            for item in cartItems {
+                sum_price += item.getPrice() * Float(item.getCount())
+                sum_count += item.getCount()
+            }
+            lblCart.text = "\(sum_count) Item : $\(String(format: "%.2f", sum_price))"
+            
+            let cartHeight = sum_price == 0 ? 65 : 0
+            self.cartPriceView.isHidden = cartHeight != 0
+            UIView.animate(withDuration: 0.5) {
+                self.cartPriceBottomConstraint.constant = CGFloat(cartHeight)
+                self.view.layoutIfNeeded()
+            }
+
+            if let tabItems = tabBarController?.tabBar.items {
+                       // In this case we want to modify the badge number of the third tab:
+                       let tabItem = tabItems[3]
+                       tabItem.badgeValue = String(sum_count)
+                   }
+            showToast(message: "Added to cart")
+          
         }
         
-        LocalStorage[SAVED_CARTS] = jsonDict
-
-        var sum_price = Float(0.0)
-        for item in cartItems {
-            sum_price += item.getPrice()
-        }
-        let price_str = String(format: "%.2f", sum_price)
-        lblCart.text = "\(cartItems.count) Item : \(price_str)$"
     }
     
     @IBAction func viewCartClicked(_ sender: Any) {
@@ -153,6 +288,7 @@ class OrderPlacingVC: UIViewController {
         switch select_type {
         case 0:
             lblSelectSize.textColor = UIColor.init(red: 0, green: 174, blue: 239)
+            selectSizeView.isHidden = false
             lblSelectCrust.textColor = UIColor.black
             lblSelectTopics.textColor = UIColor.black
             lblSelectSize.font = UIFont.boldSystemFont(ofSize: 16.0)
@@ -163,6 +299,7 @@ class OrderPlacingVC: UIViewController {
             barSelectTopics.isHidden = true
             break
         case 1:
+            selectSizeView.isHidden = true
             lblSelectSize.textColor = UIColor.black
             lblSelectCrust.textColor = UIColor.init(red: 0, green: 174, blue: 239)
             lblSelectTopics.textColor = UIColor.black
@@ -174,6 +311,7 @@ class OrderPlacingVC: UIViewController {
             barSelectTopics.isHidden = true
             break
         case 2:
+            selectSizeView.isHidden = true
             lblSelectSize.textColor = UIColor.black
             lblSelectCrust.textColor = UIColor.black
             lblSelectTopics.textColor = UIColor.init(red: 0, green: 174, blue: 239)
@@ -227,5 +365,124 @@ class OrderPlacingVC: UIViewController {
         default:
             break
         }
+    }
+}
+
+extension OrderPlacingVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if collectionView == topicCollectionView {
+            return selecttopics.count
+        }
+        return selectCrust.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        index2 = index
+        if collectionView == topicCollectionView {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell2", for: indexPath) as? OrderPlacingCellTwo
+        cell?.cellTextLabel.text = selecttopics[indexPath.row]
+        cell!.cellRateLabel.text = "$\(topicRateText[indexPath.row])"
+        //cell?.cellView.backgroundColor = UIColor.white
+        //cell?.cellRateLabel.textColor = UIColor.init(red: 38, green: 181, blue: 15)
+        //cell?.cellTextLabel.textColor = .black
+       cell?.cellWidthConstraintLayout.constant = collectionView.frame.size.width / 3.0 - 10
+
+        return cell!
+        }
+        
+         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? OrderPlacingVCCell
+         cell?.cellTextLabel.text = selectCrust[indexPath.row]
+         cell!.cellPriceLabel.text = "$\(CrustRateText[indexPath.row])"
+         cell?.cellView.backgroundColor = UIColor.white
+         cell?.cellPriceLabel.textColor = UIColor.init(red: 38, green: 181, blue: 15)
+         cell?.cellTextLabel.textColor = .black
+        cell?.cellWidthConstraintLayout.constant = collectionView.frame.size.width / 3.0 - 10
+        cell?.layoutIfNeeded()
+        
+         return cell!
+    
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        if let cell = collectionView.cellForItem(at: indexPath) as? OrderPlacingCellTwo {
+            
+            cell.cellXLabel.isHidden = true
+
+            if select_type == 2 {
+                
+                if cellIndex.contains(indexPath) && (xDictionaryList[indexPath.row] == 2) {
+                    cell.cellView.backgroundColor = .white
+                    cell.cellRateLabel.textColor = UIColor.init(red: 38, green: 181, blue: 15)
+                    cell.cellTextLabel.textColor = .black
+                    let index = cellIndex.index(of: indexPath)
+                    TopicsRate = TopicsRate - topicRateText[indexPath.row]
+                    let roundValue = price + TopicsRate + CrustRate
+                    setUpCartPrice(price: Float(roundValue))
+                    cellIndex.remove(at: index!)
+                    xDictionaryList.removeValue(forKey: indexPath.row)
+                    
+                    var newTopic = selectedProduct.topic
+                    newTopic[indexPath.row] = 0
+                    selectedProduct.topic = newTopic
+                } else {
+                        
+                    cell.cellView.backgroundColor = UIColor.init(red: 0, green: 174, blue: 239)
+                    cell.cellRateLabel.textColor = .white
+                    cell.cellTextLabel.textColor = .white
+                    cell.cellXLabel.textColor = .white
+                    cell.cellXLabel.isHidden = false
+
+                    cellIndex = []
+                    cellIndex.append(indexPath)
+                    TopicsRate = TopicsRate + topicRateText[indexPath.row]
+                    let roundValue = price + TopicsRate + CrustRate
+                    setUpCartPrice(price: Float(roundValue))
+
+                    var xValue: Int = xDictionaryList[indexPath.row] ?? 0
+                    xValue += 1
+                    xDictionaryList[indexPath.row] = xValue
+                    
+                    cell.cellXLabel.text = "(X\(xValue))"
+                    
+                    var newTopic = selectedProduct.topic
+                    newTopic[indexPath.row] = xValue
+                    selectedProduct.topic = newTopic
+                }
+                
+            }
+            
+        }
+       
+        if let cell = collectionView.cellForItem(at: indexPath) as? OrderPlacingVCCell {
+            
+            cell.cellView.backgroundColor = UIColor.init(red: 0, green: 174, blue: 239)
+            cell.cellPriceLabel.textColor = .white
+            cell.cellTextLabel.textColor = .white
+                CrustRate = CrustRateText[indexPath.row]
+            let roundValue = price + TopicsRate + CrustRate
+            setUpCartPrice(price: Float(roundValue))
+            selectedProduct.crust = indexPath.row
+        }
+        print("click")
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+//        if let cell = collectionView.cellForItem(at: indexPath) as? OrderPlacingCellTwo {
+//            cell.cellView.backgroundColor = .white
+//            cell.cellRateLabel.textColor = UIColor.init(red: 38, green: 181, blue: 15)
+//            cell.cellTextLabel.textColor = .black
+//        }
+        
+        if let cell = collectionView.cellForItem(at: indexPath) as? OrderPlacingVCCell {
+            cell.cellView.backgroundColor = .white
+            cell.cellPriceLabel.textColor = UIColor.init(red: 38, green: 181, blue: 15)
+            cell.cellTextLabel.textColor = .black
+        }
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.size.width / 3.0, height: collectionView.frame.size.height)
     }
 }
