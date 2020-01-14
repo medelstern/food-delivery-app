@@ -205,7 +205,7 @@ class FoodListVC: UIViewController, WormTabStripDelegate, ProductListVCDelegate,
         viewPager!.delegate = self
         viewPager!.eyStyle.wormStyel = .BUBBLE
         viewPager!.eyStyle.isWormEnable = false
-        viewPager!.eyStyle.spacingBetweenTabs = 10
+        viewPager!.eyStyle.spacingBetweenTabs = view.frame.width/12
         viewPager!.eyStyle.tabItemSelectedColor = UIColor.init(red: 0, green: 174, blue: 239)
         viewPager!.eyStyle.tabItemDefaultFont = UIFont(name:"HelveticaNeue-Bold", size: 18.0)!
         viewPager!.currentTabIndex = tindex
