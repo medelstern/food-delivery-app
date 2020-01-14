@@ -40,6 +40,7 @@ class FirstVC: UIViewController, UITextFieldDelegate {
         collectionView.borderWidth = 1
         collectionView.borderColor = .gray
         setSelection()
+        hideKeyBoard()
       
     }
     func setSelection()
