@@ -205,6 +205,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1852EF5B23CDA334002D187F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		4026ED8513D1AA439B048928 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -288,6 +295,7 @@
 				EAB51E3223024052008C2792 /* third party */,
 				EAB51E2F2301EA5E008C2792 /* viewControllers */,
 				EAB51E292301E73B008C2792 /* models */,
+				1852EF5B23CDA334002D187F /* Resources */,
 				89B66B3622FC823C003FE3EE /* AppDelegate.swift */,
 				89B66B3A22FC823D003FE3EE /* Main.storyboard */,
 				89B66B4022FC824A003FE3EE /* Assets.xcassets */,
