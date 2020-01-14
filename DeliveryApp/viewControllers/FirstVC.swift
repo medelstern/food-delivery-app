@@ -34,11 +34,11 @@ class FirstVC: UIViewController, UITextFieldDelegate {
         deliveryView.layer.cornerRadius = 5
          deliverySubView.layer.cornerRadius = 5
         deliveryView.borderWidth = 1
-        deliveryView.borderColor = .gray
+        deliveryView.borderColor = .init(red: 235, green: 235, blue: 235)
         collectionView.layer.cornerRadius = 5
          collectionSubView.layer.cornerRadius = 5
         collectionView.borderWidth = 1
-        collectionView.borderColor = .gray
+        collectionView.borderColor = .init(red: 235, green: 235, blue: 235)
         setSelection()
         hideKeyBoard()
       
@@ -47,8 +47,8 @@ class FirstVC: UIViewController, UITextFieldDelegate {
     {
         if(isDelivery)
         {
-            deliverySubView.backgroundColor = .lightGray
-            deliveryView.backgroundColor = .lightGray
+            deliverySubView.backgroundColor = .init(red: 235, green: 235, blue: 235)
+            deliveryView.backgroundColor = .init(red: 235, green: 235, blue: 235)
             collectionSubView.backgroundColor = .white
             collectionView.backgroundColor = .white
         }
@@ -56,8 +56,8 @@ class FirstVC: UIViewController, UITextFieldDelegate {
         {
             deliverySubView.backgroundColor = .white
             deliveryView.backgroundColor = .white
-            collectionSubView.backgroundColor = .lightGray
-            collectionView.backgroundColor = .lightGray
+            collectionSubView.backgroundColor = .init(red: 235, green: 235, blue: 235)
+            collectionView.backgroundColor = .init(red: 235, green: 235, blue: 235)
         }
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

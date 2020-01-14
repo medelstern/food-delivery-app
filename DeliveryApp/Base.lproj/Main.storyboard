@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="GNy-fG-Dco">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="GNy-fG-Dco">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -6493,6 +6493,10 @@ mushroom, golden com, Jalapeno Extra chese</string>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blur_back" translatesAutoresizingMaskIntoConstraints="NO" id="RgL-xq-sGH">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="912"/>
                                     </imageView>
+                                    <view alpha="0.10000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5xZ-WT-cTX">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="912"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pgl-Id-yAI">
                                         <rect key="frame" x="30" y="231" width="354" height="400"/>
                                         <subviews>
@@ -6759,12 +6763,16 @@ mushroom, golden com, Jalapeno Extra chese</string>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="RgL-xq-sGH" secondAttribute="bottom" constant="-50" id="Bsl-Kc-wgb"/>
+                                    <constraint firstItem="5xZ-WT-cTX" firstAttribute="bottom" secondItem="RgL-xq-sGH" secondAttribute="bottom" id="CnV-2I-0Dd"/>
                                     <constraint firstItem="RgL-xq-sGH" firstAttribute="leading" secondItem="7DL-kO-nOH" secondAttribute="leading" id="TTD-ah-UTa"/>
                                     <constraint firstItem="pgl-Id-yAI" firstAttribute="centerY" secondItem="7DL-kO-nOH" secondAttribute="centerY" id="XnD-TG-Jop"/>
                                     <constraint firstAttribute="trailing" secondItem="pgl-Id-yAI" secondAttribute="trailing" constant="30" id="aiz-zD-VFA"/>
                                     <constraint firstItem="RgL-xq-sGH" firstAttribute="top" secondItem="7DL-kO-nOH" secondAttribute="top" id="caS-KJ-Qvf"/>
                                     <constraint firstAttribute="trailing" secondItem="RgL-xq-sGH" secondAttribute="trailing" id="e4A-aO-wyn"/>
                                     <constraint firstItem="pgl-Id-yAI" firstAttribute="leading" secondItem="7DL-kO-nOH" secondAttribute="leading" constant="30" id="rLw-QS-k27"/>
+                                    <constraint firstItem="5xZ-WT-cTX" firstAttribute="trailing" secondItem="RgL-xq-sGH" secondAttribute="trailing" id="tf8-Nn-kaU"/>
+                                    <constraint firstItem="5xZ-WT-cTX" firstAttribute="leading" secondItem="RgL-xq-sGH" secondAttribute="leading" id="wC5-2P-6s5"/>
+                                    <constraint firstItem="5xZ-WT-cTX" firstAttribute="top" secondItem="RgL-xq-sGH" secondAttribute="top" id="xB9-Wu-lmf"/>
                                 </constraints>
                             </view>
                         </subviews>
