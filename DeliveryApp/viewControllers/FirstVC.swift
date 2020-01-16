@@ -16,7 +16,9 @@ class FirstVC: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var collectionSubView: UIView!
     @IBOutlet weak var deliverySubView: UIView!
-    
+    @IBOutlet weak var collectionContainerView: UIView!
+    @IBOutlet weak var deliveryContainerView: UIView!
+    @IBOutlet weak var buttonContinue: UIButton!
     @IBOutlet weak var postCodeText: UITextField!
     
     @IBOutlet weak var codeBottomBorder: UIView!
@@ -51,6 +53,16 @@ class FirstVC: UIViewController, UITextFieldDelegate {
             deliveryView.backgroundColor = .init(red: 235, green: 235, blue: 235)
             collectionSubView.backgroundColor = .white
             collectionView.backgroundColor = .white
+            UIView.animate(withDuration: 0.15, animations: {
+                self.collectionContainerView.alpha = 0
+                self.buttonContinue.alpha = 0
+            }) { (_) in
+                self.buttonContinue.setTitle("Continue", for: .normal)
+                UIView.animate(withDuration: 0.15) {
+                    self.deliveryContainerView.alpha = 1
+                    self.buttonContinue.alpha = 1
+                }
+            }
         }
         if(isCollection)
         {
@@ -58,6 +70,16 @@ class FirstVC: UIViewController, UITextFieldDelegate {
             deliveryView.backgroundColor = .white
             collectionSubView.backgroundColor = .init(red: 235, green: 235, blue: 235)
             collectionView.backgroundColor = .init(red: 235, green: 235, blue: 235)
+            UIView.animate(withDuration: 0.15, animations: {
+                self.deliveryContainerView.alpha = 0
+                self.buttonContinue.alpha = 0
+            }) { (_) in
+                self.buttonContinue.setTitle("Confirm", for: .normal)
+                UIView.animate(withDuration: 0.15) {
+                    self.collectionContainerView.alpha = 1
+                    self.buttonContinue.alpha = 1
+                }
+            }
         }
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

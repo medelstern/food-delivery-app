@@ -1314,7 +1314,7 @@
                                         </constraints>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_logo" translatesAutoresizingMaskIntoConstraints="NO" id="GVQ-Kv-0Ru">
-                                        <rect key="frame" x="74" y="2" width="266" height="36"/>
+                                        <rect key="frame" x="140.33333333333331" y="11" width="133.33333333333331" height="18"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G5k-1W-WKL">
                                         <rect key="frame" x="8" y="10" width="33" height="30"/>
@@ -6043,16 +6043,16 @@ ballistic on veggies! Check out this mouth watering overload of </string>
                                         </connections>
                                     </button>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_logo" translatesAutoresizingMaskIntoConstraints="NO" id="3O5-9v-NRc">
-                                        <rect key="frame" x="74" y="-3" width="266" height="36"/>
+                                        <rect key="frame" x="140.33333333333331" y="6" width="133.33333333333331" height="18"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ORDER NUM 2214541" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yH8-Oo-hQL">
-                                        <rect key="frame" x="105.00000000000001" y="37" width="204.33333333333337" height="24"/>
+                                        <rect key="frame" x="105.00000000000001" y="28" width="204.33333333333337" height="24"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="09/25/2019 08:11" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mUa-t7-rxW">
-                                        <rect key="frame" x="139.66666666666669" y="69" width="134.66666666666669" height="21"/>
+                                        <rect key="frame" x="139.66666666666669" y="60" width="134.66666666666669" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -6673,7 +6673,7 @@ mushroom, golden com, Jalapeno Extra chese</string>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="60x-Ls-6O6">
-                                                <rect key="frame" x="30" y="200" width="294" height="100"/>
+                                                <rect key="frame" x="30" y="200" width="294" height="120"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter your delivery pastcode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cLJ-hA-BYE">
                                                         <rect key="frame" x="0.0" y="0.0" width="294" height="40"/>
@@ -6685,7 +6685,7 @@ mushroom, golden com, Jalapeno Extra chese</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CVi-Tm-zn2">
-                                                        <rect key="frame" x="0.0" y="48" width="294" height="50"/>
+                                                        <rect key="frame" x="0.0" y="68" width="294" height="50"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="POSTCODE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vA5-nX-tlN">
                                                                 <rect key="frame" x="0.0" y="0.0" width="100" height="50"/>
@@ -6718,7 +6718,7 @@ mushroom, golden com, Jalapeno Extra chese</string>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LL7-Do-d1v">
-                                                        <rect key="frame" x="0.0" y="99" width="294" height="1"/>
+                                                        <rect key="frame" x="0.0" y="119" width="294" height="1"/>
                                                         <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="1" id="IJb-h4-sxE"/>
@@ -6736,11 +6736,37 @@ mushroom, golden com, Jalapeno Extra chese</string>
                                                     <constraint firstItem="CVi-Tm-zn2" firstAttribute="leading" secondItem="60x-Ls-6O6" secondAttribute="leading" id="jVb-qZ-FAi"/>
                                                     <constraint firstItem="LL7-Do-d1v" firstAttribute="leading" secondItem="60x-Ls-6O6" secondAttribute="leading" id="oW9-KU-gP2"/>
                                                     <constraint firstItem="LL7-Do-d1v" firstAttribute="top" secondItem="CVi-Tm-zn2" secondAttribute="bottom" constant="1" id="q1i-fH-GF0"/>
-                                                    <constraint firstAttribute="height" constant="100" id="zrd-BU-vqk"/>
+                                                    <constraint firstAttribute="height" constant="120" id="zrd-BU-vqk"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IJd-Bb-VcZ">
+                                                <rect key="frame" x="30" y="200" width="294" height="120"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Collection Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V2Z-hp-1wf">
+                                                        <rect key="frame" x="63.333333333333329" y="8" width="167.66666666666669" height="23"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Restora Kebap 13-494 Bromley Road Bromley BR3 4AS" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="ZJk-IF-j95">
+                                                        <rect key="frame" x="8" y="39" width="278" height="81"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <constraints>
+                                                    <constraint firstItem="V2Z-hp-1wf" firstAttribute="centerX" secondItem="IJd-Bb-VcZ" secondAttribute="centerX" id="6Z7-UE-Ngn"/>
+                                                    <constraint firstItem="V2Z-hp-1wf" firstAttribute="top" secondItem="IJd-Bb-VcZ" secondAttribute="top" constant="8" id="9EK-Pm-dkU"/>
+                                                    <constraint firstItem="ZJk-IF-j95" firstAttribute="leading" secondItem="IJd-Bb-VcZ" secondAttribute="leading" constant="8" id="PPI-Kj-c4y"/>
+                                                    <constraint firstAttribute="trailing" secondItem="ZJk-IF-j95" secondAttribute="trailing" constant="8" id="Wwe-Gk-gbn"/>
+                                                    <constraint firstItem="ZJk-IF-j95" firstAttribute="top" secondItem="V2Z-hp-1wf" secondAttribute="bottom" constant="8" id="eDT-3U-SWH"/>
+                                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ZJk-IF-j95" secondAttribute="bottom" id="gtm-p8-mrq"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dku-sQ-7Zb">
-                                                <rect key="frame" x="40" y="325" width="274" height="40"/>
+                                                <rect key="frame" x="40" y="345" width="274" height="40"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bHk-DX-Ypu">
                                                         <rect key="frame" x="0.0" y="0.0" width="274" height="40"/>
@@ -6773,12 +6799,16 @@ mushroom, golden com, Jalapeno Extra chese</string>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="400" id="9uK-ve-Qcs"/>
+                                            <constraint firstItem="IJd-Bb-VcZ" firstAttribute="top" secondItem="60x-Ls-6O6" secondAttribute="top" id="ELX-Lg-duW"/>
                                             <constraint firstAttribute="trailing" secondItem="dku-sQ-7Zb" secondAttribute="trailing" constant="40" id="J5C-9c-N0E"/>
+                                            <constraint firstItem="IJd-Bb-VcZ" firstAttribute="leading" secondItem="60x-Ls-6O6" secondAttribute="leading" id="JbU-g1-4yC"/>
                                             <constraint firstItem="8ka-bv-z0S" firstAttribute="centerX" secondItem="pgl-Id-yAI" secondAttribute="centerX" id="OD7-9t-nUO"/>
                                             <constraint firstItem="XZn-sg-hFw" firstAttribute="leading" secondItem="pgl-Id-yAI" secondAttribute="leading" constant="10" id="V9F-eq-vMi"/>
                                             <constraint firstItem="dku-sQ-7Zb" firstAttribute="leading" secondItem="pgl-Id-yAI" secondAttribute="leading" constant="40" id="Z3f-Kh-CUZ"/>
                                             <constraint firstAttribute="trailing" secondItem="XZn-sg-hFw" secondAttribute="trailing" constant="10" id="bZ4-gF-w8i"/>
                                             <constraint firstItem="8ka-bv-z0S" firstAttribute="top" secondItem="XZn-sg-hFw" secondAttribute="bottom" constant="25" id="dZH-3Y-dFg"/>
+                                            <constraint firstItem="IJd-Bb-VcZ" firstAttribute="bottom" secondItem="60x-Ls-6O6" secondAttribute="bottom" id="fKZ-E1-lqi"/>
+                                            <constraint firstItem="IJd-Bb-VcZ" firstAttribute="trailing" secondItem="60x-Ls-6O6" secondAttribute="trailing" id="fTz-D0-cxK"/>
                                             <constraint firstItem="XZn-sg-hFw" firstAttribute="top" secondItem="pgl-Id-yAI" secondAttribute="top" constant="10" id="u4c-Uf-n5p"/>
                                             <constraint firstItem="60x-Ls-6O6" firstAttribute="leading" secondItem="pgl-Id-yAI" secondAttribute="leading" constant="30" id="uLk-gh-PR5"/>
                                             <constraint firstItem="60x-Ls-6O6" firstAttribute="top" secondItem="8ka-bv-z0S" secondAttribute="bottom" constant="25" id="vZz-gE-wjM"/>
@@ -6819,9 +6849,12 @@ mushroom, golden com, Jalapeno Extra chese</string>
                     </view>
                     <navigationItem key="navigationItem" id="59W-kG-W8U"/>
                     <connections>
+                        <outlet property="buttonContinue" destination="bHk-DX-Ypu" id="qsb-IW-jpS"/>
                         <outlet property="codeBottomBorder" destination="LL7-Do-d1v" id="KRD-1A-QRY"/>
+                        <outlet property="collectionContainerView" destination="IJd-Bb-VcZ" id="I6u-T5-qYZ"/>
                         <outlet property="collectionSubView" destination="edX-nt-hvE" id="efE-FK-55a"/>
                         <outlet property="collectionView" destination="SgK-0L-4BV" id="edZ-A5-hO0"/>
+                        <outlet property="deliveryContainerView" destination="60x-Ls-6O6" id="3Jm-r8-LuO"/>
                         <outlet property="deliverySubView" destination="mne-u9-YDm" id="GyX-GX-Odl"/>
                         <outlet property="deliveryView" destination="5GP-bg-IY5" id="ZEc-ll-9ke"/>
                         <outlet property="postCodeLb" destination="vA5-nX-tlN" id="Do0-la-ZPG"/>
